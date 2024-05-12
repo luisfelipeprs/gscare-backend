@@ -7,17 +7,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{18EFF43F-D1D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{987A63EC-1CDA-45E6-A6A7-8BFA4471711A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GscareApiAspNetCore.Api", "src\GscareApiAspNetCore.Api\GscareApiAspNetCore.Api.csproj", "{00CEACD9-E4E5-4D81-973F-8668C4F6BF45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GscareApiAspNetCore.Api", "src\GscareApiAspNetCore.Api\GscareApiAspNetCore.Api.csproj", "{00CEACD9-E4E5-4D81-973F-8668C4F6BF45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GscareApiAspNetCore.Domain", "src\GscareApiAspNetCore.Domain\GscareApiAspNetCore.Domain.csproj", "{790AD035-369E-4B1C-8408-658CD202F78A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GscareApiAspNetCore.Domain", "src\GscareApiAspNetCore.Domain\GscareApiAspNetCore.Domain.csproj", "{790AD035-369E-4B1C-8408-658CD202F78A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GscareApiAspNetCore.Application", "src\GscareApiAspNetCore.Application\GscareApiAspNetCore.Application.csproj", "{92FBABC7-8D24-499C-9748-C83A8B274ECC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GscareApiAspNetCore.Application", "src\GscareApiAspNetCore.Application\GscareApiAspNetCore.Application.csproj", "{92FBABC7-8D24-499C-9748-C83A8B274ECC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GscareApiAspNetCore.Communication", "src\GscareApiAspNetCore.Communication\GscareApiAspNetCore.Communication.csproj", "{E4E31730-C888-4A96-AB08-870F92C0EB06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GscareApiAspNetCore.Communication", "src\GscareApiAspNetCore.Communication\GscareApiAspNetCore.Communication.csproj", "{E4E31730-C888-4A96-AB08-870F92C0EB06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GscareApiAspNetCore.Exception", "src\GscareApiAspNetCore.Exception\GscareApiAspNetCore.Exception.csproj", "{124293DA-BBEF-433E-AEE6-41EF9E6EBB98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GscareApiAspNetCore.Exception", "src\GscareApiAspNetCore.Exception\GscareApiAspNetCore.Exception.csproj", "{124293DA-BBEF-433E-AEE6-41EF9E6EBB98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GscareApiAspNetCore.Infrastructure", "src\GscareApiAspNetCore.Infrastructure\GscareApiAspNetCore.Infrastructure.csproj", "{02C581EC-3616-45C9-970E-8513D3008EE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GscareApiAspNetCore.Infrastructure", "src\GscareApiAspNetCore.Infrastructure\GscareApiAspNetCore.Infrastructure.csproj", "{02C581EC-3616-45C9-970E-8513D3008EE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validators.Test", "tests\Validators.Test\Validators.Test.csproj", "{700CD65B-15D3-4412-8FD6-2A60269106F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTestUtils", "tests\CommonTestUtils\CommonTestUtils.csproj", "{883547C5-9529-4733-BF49-97CD879BCEAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,14 @@ Global
 		{02C581EC-3616-45C9-970E-8513D3008EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02C581EC-3616-45C9-970E-8513D3008EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02C581EC-3616-45C9-970E-8513D3008EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{700CD65B-15D3-4412-8FD6-2A60269106F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{700CD65B-15D3-4412-8FD6-2A60269106F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{700CD65B-15D3-4412-8FD6-2A60269106F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{700CD65B-15D3-4412-8FD6-2A60269106F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{883547C5-9529-4733-BF49-97CD879BCEAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{883547C5-9529-4733-BF49-97CD879BCEAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{883547C5-9529-4733-BF49-97CD879BCEAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{883547C5-9529-4733-BF49-97CD879BCEAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +72,8 @@ Global
 		{E4E31730-C888-4A96-AB08-870F92C0EB06} = {18EFF43F-D1D9-45F2-B68D-9992427C7B61}
 		{124293DA-BBEF-433E-AEE6-41EF9E6EBB98} = {18EFF43F-D1D9-45F2-B68D-9992427C7B61}
 		{02C581EC-3616-45C9-970E-8513D3008EE3} = {18EFF43F-D1D9-45F2-B68D-9992427C7B61}
+		{700CD65B-15D3-4412-8FD6-2A60269106F9} = {987A63EC-1CDA-45E6-A6A7-8BFA4471711A}
+		{883547C5-9529-4733-BF49-97CD879BCEAF} = {987A63EC-1CDA-45E6-A6A7-8BFA4471711A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {31FE2220-889F-4075-8296-9B3F93F66597}
