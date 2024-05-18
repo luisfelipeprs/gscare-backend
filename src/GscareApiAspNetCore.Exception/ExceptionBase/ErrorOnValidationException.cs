@@ -1,11 +1,20 @@
-﻿namespace GscareApiAspNetCore.Exception.ExceptionBase;
-public class ErrorOnValidationException: GscareException
-{
-    public List<string> Errors { get; set; }
+﻿using System.Net;
 
-    public ErrorOnValidationException(List<string> errorMessages)
+namespace GscareApiAspNetCore.Exception.ExceptionBase;
+public class ErrorOnValidationException : GscareException
+{
+    private readonly List<string> _errors;
+
+    public override int StatusCode => (int)HttpStatusCode.BadRequest;
+
+    public ErrorOnValidationException(List<string> errorMessages) : base(string.Empty)
     {
-        Errors = errorMessages;
+        _errors = errorMessages;
+    }
+
+    public override List<string> GetErrors()
+    {
+        return _errors;
     }
 }
     

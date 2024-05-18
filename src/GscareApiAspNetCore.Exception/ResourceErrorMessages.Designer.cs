@@ -61,6 +61,15 @@ namespace GscareApiAspNetCore.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to employee not found..
+        /// </summary>
+        public static string EMPLOYEE_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("EMPLOYEE_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The full name is required..
         /// </summary>
         public static string FULL_NAME_IS_REQUIRED {

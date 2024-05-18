@@ -1,7 +1,7 @@
 ﻿using GscareApiAspNetCore.Communication.Enums;
 
 namespace GscareApiAspNetCore.Communication.Requests;
-public class RequestRegisterEmployeeJson
+public class RequestEmployeeJson
 {
     public string NomeCompleto { get; set; } = string.Empty;
     public string Cpf { get; set; } = string.Empty;

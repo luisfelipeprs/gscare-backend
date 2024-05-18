@@ -11,7 +11,7 @@ public class RegisterEmployeeValidatorTests
     public void Success()
     {
         //Arrange
-        var validator = new RegisterEmployeeValidator();
+        var validator = new EmployeeValidator();
         var request = RequestRegisterEmployeeJsonBuilder.Build();
 
         //Act
@@ -28,7 +28,7 @@ public class RegisterEmployeeValidatorTests
     public void Error_NomeCompleto_Empty(string fullName)
     {
         //Arrange
-        var validator = new RegisterEmployeeValidator();
+        var validator = new EmployeeValidator();
         var request = RequestRegisterEmployeeJsonBuilder.Build();
         request.NomeCompleto = fullName;
 
@@ -44,7 +44,7 @@ public class RegisterEmployeeValidatorTests
     public void Error_DisponibilidadeDeHorario_Invalid()
     {
         //Arrange
-        var validator = new RegisterEmployeeValidator();
+        var validator = new EmployeeValidator();
         var request = RequestRegisterEmployeeJsonBuilder.Build();
         request.DisponibilidadeDeHorario = (DisponibilidadeDeHorarioType)800;
 

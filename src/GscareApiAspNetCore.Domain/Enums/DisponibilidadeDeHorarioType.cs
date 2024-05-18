@@ -1,4 +1,4 @@
-﻿namespace GscareApiAspNetCore.Communication.Enums;
+﻿namespace GscareApiAspNetCore.Domain.Enums;
 public enum DisponibilidadeDeHorarioType
 {
     Manha = 0,

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EMPLOYEE_NOT_FOUND" xml:space="preserve">
+    <value>employee not found.</value>
+  </data>
   <data name="FULL_NAME_IS_REQUIRED" xml:space="preserve">
     <value>The full name is required.</value>
   </data>
