@@ -120,6 +120,9 @@
   <data name="FULL_NAME_IS_REQUIRED" xml:space="preserve">
     <value>O nome completo é obrigatório.</value>
   </data>
+  <data name="NO_TOKEN" xml:space="preserve">
+    <value>Acesso negado.</value>
+  </data>
   <data name="TIME_AVAILABILITY_TYPE_IS_NOT_VALID." xml:space="preserve">
     <value>Disponibilidade de horário tipo não é válido.</value>
   </data>

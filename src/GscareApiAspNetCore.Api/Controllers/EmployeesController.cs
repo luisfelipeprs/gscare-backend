@@ -1,6 +1,8 @@
-﻿using GscareApiAspNetCore.Application.UseCases;
+﻿using GscareApiAspNetCore.Api.Attributes;
+using GscareApiAspNetCore.Application.UseCases;
 using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Communication.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GscareApiAspNetCore.Api.Controllers;
@@ -22,6 +24,7 @@ public class EmployeesController : ControllerBase
     }
 
     [HttpGet]
+    [AuthenticatedUser]
     [ProducesResponseType(typeof(ResponseEmployeesJson), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetAllEmployees([FromServices] IGetAllEmployeesUseCase useCase)
@@ -76,4 +79,11 @@ public class EmployeesController : ControllerBase
 
         return NoContent();
     }
+
+    //[HttpGet]
+    //[Authorize]
+    //public async string GetAuth()
+    //{
+    //    return "voce esta logado";
+    //}
 }

@@ -123,10 +123,16 @@
   <data name="FULL_NAME_IS_REQUIRED" xml:space="preserve">
     <value>The full name is required.</value>
   </data>
+  <data name="NO_TOKEN" xml:space="preserve">
+    <value>Access denied.</value>
+  </data>
   <data name="TIME_AVAILABILITY_TYPE_IS_NOT_VALID." xml:space="preserve">
     <value>Time availability Type is not valid..</value>
   </data>
   <data name="UNKNOWN_ERROR" xml:space="preserve">
     <value>Unknown error.</value>
+  </data>
+  <data name="USER_WITHOUT_PERMISSION_ACCESS_RESOURCE" xml:space="preserve">
+    <value>User without permission access resource</value>
   </data>
 </root>
