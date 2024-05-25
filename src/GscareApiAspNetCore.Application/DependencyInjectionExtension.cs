@@ -23,5 +23,8 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetEmployeeByIdUseCase, GetEmployeeByIdUseCase>();
         services.AddScoped<IDeleteEmployeeUseCase, DeleteEmployeeUseCase>();
         services.AddScoped<IUpdateEmployeeUseCase, UpdateEmployeeUseCase>();
+        services.AddScoped<IGetUserProfileUseCase, GetUserProfileUseCase>();
+        services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
+        services.AddScoped<ILoginUserUseCase, LoginUserUseCase>();
     }
 }

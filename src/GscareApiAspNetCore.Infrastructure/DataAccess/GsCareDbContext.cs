@@ -7,5 +7,6 @@ internal class GsCareDbContext: DbContext
     public GsCareDbContext(DbContextOptions options): base(options) { }
 
     public DbSet<Employee> Employees { get; set; }
+    public DbSet<User> Users { get; set; }
 
 }

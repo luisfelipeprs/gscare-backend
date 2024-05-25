@@ -15,6 +15,7 @@ public class AutoMapping : Profile
     private void RequestToEntity()
     {
         CreateMap<RequestEmployeeJson, Employee>();
+        CreateMap<RequestUserJson, User>();
     }
 
     private void EntityToResponse()
@@ -22,5 +23,9 @@ public class AutoMapping : Profile
         CreateMap<Employee, ResponseRegisteredEmployeeJson>();
         CreateMap<Employee, ResponseShortEmployeeJson>();
         CreateMap<Employee, ResponseEmployeeJson>();
+        CreateMap<User, ResponseRegisteredUserJson>();
+        CreateMap<User, ResponseShortUserJson>();
+        CreateMap<User, ResponseUserJson>();
+        CreateMap<User, ResponseUserProfileJson>();
     }
 }

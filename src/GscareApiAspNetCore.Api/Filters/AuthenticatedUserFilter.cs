@@ -12,11 +12,12 @@ namespace GscareApiAspNetCore.Api.Filters;
 public class AuthenticatedUserFilter : IAsyncAuthorizationFilter
 {
     private readonly IAccessTokenValidator _accessTokenValidator;
-    private readonly IEmployeeReadOnlyRepository _repository;
+    //private readonly IEmployeeReadOnlyRepository _repository;
+    private readonly IUserReadOnlyRepository _repository;
 
     public AuthenticatedUserFilter(
         IAccessTokenValidator accessTokenValidator,
-        IEmployeeReadOnlyRepository repository)
+        IUserReadOnlyRepository repository)
     {
         _accessTokenValidator = accessTokenValidator;
         _repository = repository;

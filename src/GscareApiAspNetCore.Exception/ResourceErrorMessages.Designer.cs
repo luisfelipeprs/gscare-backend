@@ -106,6 +106,15 @@ namespace GscareApiAspNetCore.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to user not found..
+        /// </summary>
+        public static string USER_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("USER_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User without permission access resource.
         /// </summary>
         public static string USER_WITHOUT_PERMISSION_ACCESS_RESOURCE {
