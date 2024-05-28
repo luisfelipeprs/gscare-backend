@@ -21,19 +21,19 @@ public class UsersController : ControllerBase
         return Ok(response);
     }
 
-    //[HttpPost]
-    //[ProducesResponseType(typeof(ResponseTokenJson), StatusCodes.Status201Created)]
-    //[ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-    //public async Task<IActionResult> LoginUser(
-    //    [FromServices] ILoginUserUseCase useCase,
-    //    [FromBody] RequestLoginJson request)
-    //{
-    //    var response = await useCase.Execute(request);
+    [HttpPost("login")]
+    [ProducesResponseType(typeof(ResponseTokenJson), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> LoginUser(
+        [FromServices] ILoginUserUseCase useCase,
+        [FromBody] RequestLoginJson request)
+    {
+        var response = await useCase.Execute(request);
 
-    //    return Created(string.Empty, response);
-    //}
+        return Created(string.Empty, response);
+    }
 
-    [HttpPost]
+    [HttpPost("register")]
     [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> RegisterUser(

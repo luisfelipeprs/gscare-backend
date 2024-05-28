@@ -19,16 +19,21 @@ internal class UsersRepository : IUserReadOnlyRepository, IUserWriteOnlyReposito
 
     async Task<User?> IUserReadOnlyRepository.GetById(long id)
     {
-        return await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(employee => employee.Id == id);
+        return await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id);
     }
 
     async Task<User?> IUserUpdateOnlyRepository.GetById(long id)
     {
-        return await _dbContext.Users.FirstOrDefaultAsync(employee => employee.Id == id);
+        return await _dbContext.Users.FirstOrDefaultAsync(user => user.Id == id);
     }
 
     public void Update(User user)
     {
         _dbContext.Users.Update(user);
+    }
+
+    public async Task<User?> GetByEmail(string email)
+    {
+        return await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Email == email);
     }
 }
