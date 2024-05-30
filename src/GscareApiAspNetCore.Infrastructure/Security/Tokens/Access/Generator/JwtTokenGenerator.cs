@@ -2,7 +2,6 @@
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 
 namespace GscareApiAspNetCore.Infrastructure.Security.Tokens.Access.Generator;
 public class JwtTokenGenerator : JwtTokenHandler, IAccessTokenGenerator

@@ -2,21 +2,20 @@
 using GscareApiAspNetCore.Application.UseCases;
 using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Communication.Responses;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GscareApiAspNetCore.Api.Controllers;
-
 [Route("api/[controller]")]
 [ApiController]
-public class EmployeesController : ControllerBase
+public class PatientController : ControllerBase
 {
     [HttpPost]
-    [ProducesResponseType(typeof(ResponseRegisteredEmployeeJson), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseRegisteredPatientJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Register(
-        [FromServices] IRegisterEmployeeUseCase useCase,
-        [FromBody] RequestEmployeeJson request)
+        [FromServices] IRegisterPatientUseCase useCase,
+        [FromBody] RequestPatientJson request)
     {
         var response = await useCase.Execute(request);
 
@@ -24,14 +23,13 @@ public class EmployeesController : ControllerBase
     }
 
     [HttpGet]
-    [AuthenticatedUser]
-    [ProducesResponseType(typeof(ResponseEmployeesJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponsePatientsJson), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetAllEmployees([FromServices] IGetAllEmployeesUseCase useCase)
+    public async Task<IActionResult> GetAllPatients([FromServices] IGetAllPatientsUseCase useCase)
     {
         var response = await useCase.Execute();
 
-        if (response.Employees.Count != 0)
+        if (response.Patients.Count != 0)
         {
             return Ok(response);
         }
@@ -41,10 +39,10 @@ public class EmployeesController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    [ProducesResponseType(typeof(ResponseEmployeeJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponsePatientJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
-        [FromServices] IGetEmployeeByIdUseCase useCases,
+        [FromServices] IGetPatientByIdUseCase useCases,
         [FromRoute] long id)
     {
         var response = await useCases.Execute(id);
@@ -57,9 +55,9 @@ public class EmployeesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(
-        [FromServices] IDeleteEmployeeUseCase useCase,
+        [FromServices] IDeletePatientUseCase useCase,
         [FromRoute] long id)
-    { 
+    {
         await useCase.Execute(id);
 
         return NoContent();
@@ -71,9 +69,9 @@ public class EmployeesController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Update(
-        [FromServices] IUpdateEmployeeUseCase useCase,
+        [FromServices] IUpdatePatientUseCase useCase,
         [FromRoute] long id,
-        [FromBody] RequestEmployeeJson request)
+        [FromBody] RequestPatientJson request)
     {
         await useCase.Execute(id, request);
 

@@ -2,8 +2,6 @@
 using GscareApiAspNetCore.Domain.Repositories;
 using GscareApiAspNetCore.Domain.Security.Tokens;
 using GscareApiAspNetCore.Domain.Services.LoggedUser;
-using GscareApiAspNetCore.Infrastructure.DataAccess;
-using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace GscareApiAspNetCore.Infrastructure.Services.LoggedUser;

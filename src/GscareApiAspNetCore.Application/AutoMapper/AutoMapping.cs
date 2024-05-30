@@ -16,13 +16,22 @@ public class AutoMapping : Profile
     {
         CreateMap<RequestEmployeeJson, Employee>();
         CreateMap<RequestUserJson, User>();
+        CreateMap<RequestPatientJson, Patient>();
     }
 
     private void EntityToResponse()
     {
+        //Patient 
+        CreateMap<Patient, ResponseRegisteredPatientJson>();
+        CreateMap<Patient, ResponseShortPatientJson>();
+        CreateMap<Patient, ResponsePatientJson>();
+
+        //Employee
         CreateMap<Employee, ResponseRegisteredEmployeeJson>();
         CreateMap<Employee, ResponseShortEmployeeJson>();
         CreateMap<Employee, ResponseEmployeeJson>();
+
+        //User
         CreateMap<User, ResponseRegisteredUserJson>();
         CreateMap<User, ResponseShortUserJson>();
         CreateMap<User, ResponseUserJson>();

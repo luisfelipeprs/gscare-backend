@@ -15,7 +15,6 @@ public class UsersController : ControllerBase
     [ProducesResponseType(typeof(ResponseUserProfileJson), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetUserProfile([FromServices] IGetUserProfileUseCase useCase)
     {
-        Console.WriteLine("ola");
         var response = await useCase.Execute();
             
         return Ok(response);

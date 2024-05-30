@@ -3,7 +3,7 @@ using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Exception;
 
 namespace GscareApiAspNetCore.Application.UseCases;
-public class EmployeeValidator: AbstractValidator<RequestEmployeeJson>
+public class EmployeeValidator : AbstractValidator<RequestEmployeeJson>
 {
     public EmployeeValidator()
     {

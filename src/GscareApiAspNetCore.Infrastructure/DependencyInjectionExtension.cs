@@ -26,9 +26,18 @@ public static class DependencyInjectionExtension
     public static void AddRepositories(IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        //Employee
         services.AddScoped<IEmployeeReadOnlyRepository, EmployeesRepository>();
         services.AddScoped<IEmployeeWriteOnlyRepository, EmployeesRepository>();
         services.AddScoped<IEmployeeUpdateOnlyRepository, EmployeesRepository>();
+
+        //Patient
+        services.AddScoped<IPatientReadOnlyRepository, PatientRepository>();
+        services.AddScoped<IPatientWriteOnlyRepository, PatientRepository>();
+        services.AddScoped<IPatientUpdateOnlyRepository, PatientRepository>();
+
+        //User
         services.AddScoped<IUserReadOnlyRepository, UsersRepository>();
         services.AddScoped<IUserWriteOnlyRepository, UsersRepository>();
         services.AddScoped<IUserUpdateOnlyRepository, UsersRepository>();

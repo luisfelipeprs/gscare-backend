@@ -18,11 +18,21 @@ public static class DependencyInjectionExtension
 
     private static void AddUseCases(IServiceCollection services)
     {
+        //Employee
         services.AddScoped<IRegisterEmployeeUseCase, RegisterEmployeeUseCase>();
         services.AddScoped<IGetAllEmployeesUseCase, GetAllEmployeesUseCase>();
         services.AddScoped<IGetEmployeeByIdUseCase, GetEmployeeByIdUseCase>();
         services.AddScoped<IDeleteEmployeeUseCase, DeleteEmployeeUseCase>();
         services.AddScoped<IUpdateEmployeeUseCase, UpdateEmployeeUseCase>();
+
+        //Patient
+        services.AddScoped<IRegisterPatientUseCase, RegisterPatientUseCase>();
+        services.AddScoped<IGetAllPatientsUseCase, GetAllPatientsUseCase>();
+        services.AddScoped<IGetPatientByIdUseCase, GetPatientByIdUseCase>();
+        services.AddScoped<IDeletePatientUseCase, DeletePatientUseCase>();
+        services.AddScoped<IUpdatePatientUseCase, UpdatePatientUseCase>();
+
+        //User
         services.AddScoped<IGetUserProfileUseCase, GetUserProfileUseCase>();
         services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
         services.AddScoped<ILoginUserUseCase, LoginUserUseCase>();

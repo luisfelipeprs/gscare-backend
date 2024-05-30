@@ -2,9 +2,6 @@
 using GscareApiAspNetCore.Communication.Responses;
 using GscareApiAspNetCore.Domain.Repositories;
 using GscareApiAspNetCore.Domain.Services.LoggedUser;
-using GscareApiAspNetCore.Exception.ExceptionBase;
-using GscareApiAspNetCore.Exception;
-using GscareApiAspNetCore.Communication.Requests;
 
 namespace GscareApiAspNetCore.Application.UseCases;
 internal class GetUserProfileUseCase : IGetUserProfileUseCase
