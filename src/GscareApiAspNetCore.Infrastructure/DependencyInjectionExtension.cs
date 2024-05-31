@@ -28,6 +28,11 @@ public static class DependencyInjectionExtension
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         //Employee
+        services.AddScoped<ICompanyReadOnlyRepository, CompaniesRepository>();
+        services.AddScoped<ICompanyWriteOnlyRepository, CompaniesRepository>();
+        services.AddScoped<ICompanyUpdateOnlyRepository, CompaniesRepository>();
+
+        //Employee
         services.AddScoped<IEmployeeReadOnlyRepository, EmployeesRepository>();
         services.AddScoped<IEmployeeWriteOnlyRepository, EmployeesRepository>();
         services.AddScoped<IEmployeeUpdateOnlyRepository, EmployeesRepository>();

@@ -1,7 +1,7 @@
 ﻿using GscareApiAspNetCore.Communication.Responses;
 
 namespace GscareApiAspNetCore.Application.UseCases;
-public interface IGetAllEmployeesUseCase
+public interface IGetAllCompaniesUseCase
 {
-    Task<ResponseEmployeesJson> Execute();
+    Task<ResponseCompaniesJson> Execute();
 }

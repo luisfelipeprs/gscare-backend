@@ -24,7 +24,6 @@ internal class GetAllPatientsUseCase : IGetAllPatientsUseCase
 
     public async Task<ResponsePatientsJson> Execute()
     {
-
         var result = await _repository.GetAll();
 
         return new ResponsePatientsJson

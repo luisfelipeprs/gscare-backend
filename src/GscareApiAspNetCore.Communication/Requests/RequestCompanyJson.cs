@@ -1,7 +1,6 @@
-﻿namespace GscareApiAspNetCore.Domain.Entities;
-public class Company
+﻿namespace GscareApiAspNetCore.Communication.Requests;
+public class RequestCompanyJson
 {
-    public long Id { get; set; }
     public string NomeDaEmpresa { get; set; } = string.Empty;
     public string Cnpj { get; set; } = string.Empty;
     public string TipoDeEscala { get; set; } = string.Empty;

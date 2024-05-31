@@ -17,10 +17,17 @@ public class AutoMapping : Profile
         CreateMap<RequestEmployeeJson, Employee>();
         CreateMap<RequestUserJson, User>();
         CreateMap<RequestPatientJson, Patient>();
+        CreateMap<RequestCompanyJson, Company>();
     }
 
     private void EntityToResponse()
     {
+
+        //Patient 
+        CreateMap<Company, ResponseRegisteredCompanyJson>();
+        CreateMap<Company, ResponseShortCompanyJson>();
+        CreateMap<Company, ResponseCompanyJson>();
+
         //Patient 
         CreateMap<Patient, ResponseRegisteredPatientJson>();
         CreateMap<Patient, ResponseShortPatientJson>();

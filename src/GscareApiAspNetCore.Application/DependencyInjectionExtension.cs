@@ -18,6 +18,13 @@ public static class DependencyInjectionExtension
 
     private static void AddUseCases(IServiceCollection services)
     {
+        //Company
+        services.AddScoped<IRegisterCompanyUseCase, RegisterCompanyUseCase>();
+        services.AddScoped<IGetAllCompaniesUseCase, GetAllCompaniesUseCase>();
+        services.AddScoped<IGetCompanyByIdUseCase, GetCompanyByIdUseCase>();
+        services.AddScoped<IDeleteCompanyUseCase, DeleteCompanyUseCase>();
+        services.AddScoped<IUpdateCompanyUseCase, UpdateCompanyUseCase>();
+
         //Employee
         services.AddScoped<IRegisterEmployeeUseCase, RegisterEmployeeUseCase>();
         services.AddScoped<IGetAllEmployeesUseCase, GetAllEmployeesUseCase>();
