@@ -10,5 +10,6 @@ internal class GsCareDbContext: DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Patient> Patients { get; set; }
     public DbSet<Company> Companies { get; set; }
+    public DbSet<Warning> Warnings { get; set; }
 
 }

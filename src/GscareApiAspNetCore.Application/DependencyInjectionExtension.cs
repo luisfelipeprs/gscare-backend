@@ -1,5 +1,6 @@
 ﻿using GscareApiAspNetCore.Application.AutoMapper;
 using GscareApiAspNetCore.Application.UseCases;
+using GscareApiAspNetCore.Application.UseCases.WarningUseCases;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GscareApiAspNetCore.Application;
@@ -18,6 +19,13 @@ public static class DependencyInjectionExtension
 
     private static void AddUseCases(IServiceCollection services)
     {
+        //Company
+        services.AddScoped<IRegisterWarningUseCase, RegisterWarningUseCase>();
+        services.AddScoped<IGetAllWarningsUseCase, GetAllWarningsUseCase>();
+        services.AddScoped<IGetWarningByIdUseCase, GetWarningByIdUseCase>();
+        services.AddScoped<IDeleteWarningUseCase, DeleteWarningUseCase>();
+        services.AddScoped<IUpdateWarningUseCase, UpdateWarningUseCase>();
+
         //Company
         services.AddScoped<IRegisterCompanyUseCase, RegisterCompanyUseCase>();
         services.AddScoped<IGetAllCompaniesUseCase, GetAllCompaniesUseCase>();

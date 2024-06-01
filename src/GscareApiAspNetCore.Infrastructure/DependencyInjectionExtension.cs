@@ -46,6 +46,11 @@ public static class DependencyInjectionExtension
         services.AddScoped<IUserReadOnlyRepository, UsersRepository>();
         services.AddScoped<IUserWriteOnlyRepository, UsersRepository>();
         services.AddScoped<IUserUpdateOnlyRepository, UsersRepository>();
+
+        //Warning
+        services.AddScoped<IWarningReadOnlyRepository, WarningsRepository>();
+        services.AddScoped<IWarningWriteOnlyRepository, WarningsRepository>();
+        services.AddScoped<IWarningUpdateOnlyRepository, WarningsRepository>();
     }
 
     public static void AddDbContext(IServiceCollection services, IConfiguration configuration)
