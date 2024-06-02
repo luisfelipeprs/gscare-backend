@@ -12,7 +12,10 @@ internal class GsCareDbContext: DbContext
     public DbSet<Company> Companies { get; set; }
     public DbSet<Warning> Warnings { get; set; }
     public DbSet<Medicament> Medicaments { get; set; }
+    public DbSet<Supply> Supplies { get; set; }
 
+
+    // Monitoramento de suprimentos de consumo (papel, fralda e etc....) [x]
 
     // Calendario
     // public DbSet<Agendamentos>
@@ -22,7 +25,6 @@ internal class GsCareDbContext: DbContext
 
     // Relatório diário e eventos inesperados
 
-    // Monitoramento de suprimentos de consumo (papel, fralda e etc....)
 
     // Comunicacao direta e feedback
     // Gestão de documentos do paciente

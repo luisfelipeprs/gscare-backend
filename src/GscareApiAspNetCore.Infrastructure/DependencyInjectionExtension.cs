@@ -1,5 +1,6 @@
 ﻿using GscareApiAspNetCore.Domain.Repositories;
 using GscareApiAspNetCore.Domain.Repositories.MedicamentRepositories;
+using GscareApiAspNetCore.Domain.Repositories.SupplyRepositories;
 using GscareApiAspNetCore.Domain.Security.Tokens;
 using GscareApiAspNetCore.Domain.Services.LoggedUser;
 using GscareApiAspNetCore.Infrastructure.DataAccess;
@@ -27,6 +28,11 @@ public static class DependencyInjectionExtension
     public static void AddRepositories(IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        // Medicament
+        services.AddScoped<ISupplyReadOnlyRepository, SupplyRepository>();
+        services.AddScoped<ISupplyWriteOnlyRepository, SupplyRepository>();
+        services.AddScoped<ISupplyUpdateOnlyRepository, SupplyRepository>();
 
         // Medicament
         services.AddScoped<IMedicamentReadOnlyRepository, MedicamentRepository>();
