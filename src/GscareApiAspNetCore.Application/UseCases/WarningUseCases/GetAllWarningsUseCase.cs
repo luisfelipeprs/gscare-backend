@@ -20,7 +20,7 @@ public class GetAllWarningsUseCase : IGetAllWarningsUseCase
 
         return new ResponseWarningsJson
         {
-            Companies = _mapper.Map<List<ResponseShortWarningJson>>(result)
+            Warning = _mapper.Map<List<ResponseShortWarningJson>>(result)
         };
         //var result = await _repository.GetAll();
 

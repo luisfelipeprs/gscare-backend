@@ -1,4 +1,5 @@
 ﻿using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.MedicamentRepositories;
 using GscareApiAspNetCore.Domain.Security.Tokens;
 using GscareApiAspNetCore.Domain.Services.LoggedUser;
 using GscareApiAspNetCore.Infrastructure.DataAccess;
@@ -27,27 +28,32 @@ public static class DependencyInjectionExtension
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-        //Employee
+        // Medicament
+        services.AddScoped<IMedicamentReadOnlyRepository, MedicamentRepository>();
+        services.AddScoped<IMedicamentWriteOnlyRepository, MedicamentRepository>();
+        services.AddScoped<IMedicamentUpdateOnlyRepository, MedicamentRepository>();
+
+        // Company
         services.AddScoped<ICompanyReadOnlyRepository, CompaniesRepository>();
         services.AddScoped<ICompanyWriteOnlyRepository, CompaniesRepository>();
         services.AddScoped<ICompanyUpdateOnlyRepository, CompaniesRepository>();
 
-        //Employee
+        // Employee
         services.AddScoped<IEmployeeReadOnlyRepository, EmployeesRepository>();
         services.AddScoped<IEmployeeWriteOnlyRepository, EmployeesRepository>();
         services.AddScoped<IEmployeeUpdateOnlyRepository, EmployeesRepository>();
 
-        //Patient
+        // Patient
         services.AddScoped<IPatientReadOnlyRepository, PatientRepository>();
         services.AddScoped<IPatientWriteOnlyRepository, PatientRepository>();
         services.AddScoped<IPatientUpdateOnlyRepository, PatientRepository>();
 
-        //User
+        // User
         services.AddScoped<IUserReadOnlyRepository, UsersRepository>();
         services.AddScoped<IUserWriteOnlyRepository, UsersRepository>();
         services.AddScoped<IUserUpdateOnlyRepository, UsersRepository>();
 
-        //Warning
+        // Warning
         services.AddScoped<IWarningReadOnlyRepository, WarningsRepository>();
         services.AddScoped<IWarningWriteOnlyRepository, WarningsRepository>();
         services.AddScoped<IWarningUpdateOnlyRepository, WarningsRepository>();

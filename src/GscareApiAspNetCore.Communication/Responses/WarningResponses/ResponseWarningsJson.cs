@@ -1,5 +1,5 @@
 ﻿namespace GscareApiAspNetCore.Communication.Responses.WarningResponses;
 public class ResponseWarningsJson
 {
-    public List<ResponseShortWarningJson> Companies { get; set; } = [];
+    public List<ResponseShortWarningJson> Warning { get; set; } = [];
 }

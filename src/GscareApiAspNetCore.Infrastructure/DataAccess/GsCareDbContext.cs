@@ -11,5 +11,20 @@ internal class GsCareDbContext: DbContext
     public DbSet<Patient> Patients { get; set; }
     public DbSet<Company> Companies { get; set; }
     public DbSet<Warning> Warnings { get; set; }
+    public DbSet<Medicament> Medicaments { get; set; }
+
+
+    // Calendario
+    // public DbSet<Agendamentos>
+    // -> agendamentos
+
+    // Perfil [update user] 
+
+    // Relatório diário e eventos inesperados
+
+    // Monitoramento de suprimentos de consumo (papel, fralda e etc....)
+
+    // Comunicacao direta e feedback
+    // Gestão de documentos do paciente
 
 }
