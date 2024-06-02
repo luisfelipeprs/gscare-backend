@@ -2,6 +2,7 @@
 using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Communication.Responses;
 using GscareApiAspNetCore.Communication.Responses.MedicamentResponses;
+using GscareApiAspNetCore.Communication.Responses.ServiceReponses;
 using GscareApiAspNetCore.Communication.Responses.SupplyResponses;
 using GscareApiAspNetCore.Communication.Responses.WarningResponses;
 using GscareApiAspNetCore.Domain.Entities;
@@ -24,10 +25,16 @@ public class AutoMapping : Profile
         CreateMap<RequestWarningJson, Warning>();
         CreateMap<RequestMedicamentJson, Medicament>();
         CreateMap<RequestSupplyJson, Supply>();
+        CreateMap<RequestServiceJson, Service>();
     }
 
     private void EntityToResponse()
     {
+        //Service
+        CreateMap<Service, ResponseRegisteredServiceJson>();
+        CreateMap<Service, ResponseShortServiceJson>();
+        CreateMap<Service, ResponseServiceJson>();
+
         //Supply 
         CreateMap<Supply, ResponseRegisteredSupplyJson>();
         CreateMap<Supply, ResponseShortSupplyJson>();
