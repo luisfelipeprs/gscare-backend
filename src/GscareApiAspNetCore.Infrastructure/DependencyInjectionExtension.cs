@@ -1,4 +1,5 @@
 ﻿using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.DailyReportRepositories;
 using GscareApiAspNetCore.Domain.Repositories.MedicamentRepositories;
 using GscareApiAspNetCore.Domain.Repositories.ServiceRepositories;
 using GscareApiAspNetCore.Domain.Repositories.SupplyRepositories;
@@ -29,6 +30,11 @@ public static class DependencyInjectionExtension
     public static void AddRepositories(IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        // DailyReport
+        services.AddScoped<IDailyReportReadOnlyRepository, DailyReportRepository>();
+        services.AddScoped<IDailyReportWriteOnlyRepository, DailyReportRepository>();
+        services.AddScoped<IDailyReportUpdateOnlyRepository, DailyReportRepository>();
 
         // Service
         services.AddScoped<IServiceReadOnlyRepository, ServiceRepository>();

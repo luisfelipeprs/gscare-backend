@@ -1,5 +1,6 @@
 ﻿using GscareApiAspNetCore.Application.AutoMapper;
 using GscareApiAspNetCore.Application.UseCases;
+using GscareApiAspNetCore.Application.UseCases.DailyReportUseCases;
 using GscareApiAspNetCore.Application.UseCases.MedicamentUseCases;
 using GscareApiAspNetCore.Application.UseCases.ServiceUseCases;
 using GscareApiAspNetCore.Application.UseCases.SupplyUseCases;
@@ -22,6 +23,13 @@ public static class DependencyInjectionExtension
 
     private static void AddUseCases(IServiceCollection services)
     {
+
+        //DailyReports
+        services.AddScoped<IRegisterDailyReportUseCase, RegisterDailyReportUseCase>();
+        services.AddScoped<IGetAllDailyReportsUseCase, GetAllDailyReportsUseCase>();
+        services.AddScoped<IGetDailyReportByIdUseCase, GetDailyReportByIdUseCase>();
+        services.AddScoped<IDeleteDailyReportUseCase, DeleteDailyReportUseCase>();
+        services.AddScoped<IUpdateDailyReportUseCase, UpdateDailyReportUseCase>();
 
         //Service
         services.AddScoped<IRegisterServiceUseCase, RegisterServiceUseCase>();
