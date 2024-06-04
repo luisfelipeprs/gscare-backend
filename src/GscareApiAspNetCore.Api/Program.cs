@@ -4,8 +4,6 @@ using GscareApiAspNetCore.Api.Token;
 using GscareApiAspNetCore.Application;
 using GscareApiAspNetCore.Domain.Security.Tokens;
 using GscareApiAspNetCore.Infrastructure;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -62,6 +60,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    //app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }

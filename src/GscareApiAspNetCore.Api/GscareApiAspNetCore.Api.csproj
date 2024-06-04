@@ -18,4 +18,8 @@
     <ProjectReference Include="..\GscareApiAspNetCore.Infrastructure\GscareApiAspNetCore.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>
