@@ -1,4 +1,5 @@
-﻿using GscareApiAspNetCore.Domain.Repositories;
+﻿using FluentMigrator.Runner;
+using GscareApiAspNetCore.Domain.Repositories;
 using GscareApiAspNetCore.Domain.Repositories.DailyReportRepositories;
 using GscareApiAspNetCore.Domain.Repositories.MedicamentRepositories;
 using GscareApiAspNetCore.Domain.Repositories.ServiceRepositories;
@@ -7,12 +8,14 @@ using GscareApiAspNetCore.Domain.Security.Tokens;
 using GscareApiAspNetCore.Domain.Services.LoggedUser;
 using GscareApiAspNetCore.Infrastructure.DataAccess;
 using GscareApiAspNetCore.Infrastructure.DataAccess.Repositories;
+using GscareApiAspNetCore.Infrastructure.Extensions;
 using GscareApiAspNetCore.Infrastructure.Security.Tokens.Access.Generator;
 using GscareApiAspNetCore.Infrastructure.Security.Tokens.Access.Validator;
 using GscareApiAspNetCore.Infrastructure.Services.LoggedUser;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 
 namespace GscareApiAspNetCore.Infrastructure;
@@ -24,6 +27,7 @@ public static class DependencyInjectionExtension
         AddLoggedUser(services);
         AddDbContext(services, configuration);
         AddTokens(services, configuration);
+        AddFluentMigrator_MySql(services, configuration);
     }
 
     //  PQ DEIXEI AS CLASSES PUBLICAS????
@@ -79,8 +83,7 @@ public static class DependencyInjectionExtension
 
     public static void AddDbContext(IServiceCollection services, IConfiguration configuration)
     {
-
-        var connectionString = configuration.GetConnectionString("Connection");
+        var connectionString = configuration.ConnectionString();
 
         var version = new Version(8, 0, 35);
         var serverVersion = new MySqlServerVersion(version);
@@ -98,4 +101,17 @@ public static class DependencyInjectionExtension
     }
 
     public static void AddLoggedUser(IServiceCollection services) => services.AddScoped<ILoggedUser, LoggedUser>();
+
+    private static void AddFluentMigrator_MySql(IServiceCollection services, IConfiguration configuration)
+    {
+        var connectionString = configuration.ConnectionString();
+
+        services.AddFluentMigratorCore().ConfigureRunner(options =>
+        {
+            options
+            .AddMySql8()
+            .WithGlobalConnectionString(connectionString)
+            .ScanIn(Assembly.Load("GscareApiAspNetCore.Infrastructure")).For.All();
+        });
+    }
 }

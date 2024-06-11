@@ -4,6 +4,8 @@ using GscareApiAspNetCore.Api.Token;
 using GscareApiAspNetCore.Application;
 using GscareApiAspNetCore.Domain.Security.Tokens;
 using GscareApiAspNetCore.Infrastructure;
+using GscareApiAspNetCore.Infrastructure.Extensions;
+using GscareApiAspNetCore.Infrastructure.Migrations;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -73,4 +75,15 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+MigrateDatabase();
+
 app.Run();
+
+void MigrateDatabase()
+{
+    var connectionString = builder.Configuration.ConnectionString();
+
+    var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+
+    DatabaseMigration.Migrate(connectionString, serviceScope.ServiceProvider);
+}
