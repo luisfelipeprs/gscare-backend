@@ -24,7 +24,7 @@ public class EmployeesController : ControllerBase
     }
 
     [HttpGet]
-    [AuthenticatedUser]
+    //[AuthenticatedUser]
     [ProducesResponseType(typeof(ResponseEmployeesJson), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetAllEmployees([FromServices] IGetAllEmployeesUseCase useCase)
