@@ -10,8 +10,11 @@ public class Patient
     public string DataDePagamento { get; set; } = string.Empty;
     public string FormaDePagamento { get; set; } = string.Empty;
     public string GrauDeParentesco { get; set; } = string.Empty;
-    public string Identidade {  get; set; } = string.Empty;
-    public string Cpf {  get; set; } = string.Empty;
+    public string Identidade { get; set; } = string.Empty;
+    public string Cpf { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string Celular { get; set; } = string.Empty;
+
+    // Navigation property
+    public User? User { get; set; }
 }

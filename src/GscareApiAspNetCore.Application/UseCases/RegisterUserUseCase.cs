@@ -29,19 +29,34 @@ public class RegisterUserUseCase : IRegisterUserUseCase
     {
         Validate(request);
 
-        var entity = _mapper.Map<User>(request);
+        var user = _mapper.Map<User>(request);
 
-        await _repository.Add(entity);
+        //switch (user.UserType)
+        //{
+        //    case RolesUserType.Employee:
+        //        await _repository.AddEmployee(user.Employee!);
+        //        break;
+        //    case RolesUserType.Patient:
+        //        await _repository.AddPatient(user.Patient!);
+        //        break;
+        //    case RolesUserType.Company:
+        //        await _repository.AddCompany(user.Company!);
+        //        break;
+        //    default:
+        //        throw new InvalidOperationException("Invalid user type.");
+        //}
+
+        await _repository.Add(user);
 
         await _unitOfWork.Commit();
 
-        //return _mapper.Map<ResponseRegisteredUserJson>(entity);
+        //return _mapper.Map<ResponseRegisteredUserJson>(user);
         return new ResponseRegisteredUserJson
         {
-            Name = entity.Name,
+            Name = user.Name,
             Tokens = new ResponseTokenJson
             {
-                AccessToken = _accessTokenGenerator.Generate(entity.Id)
+                AccessToken = _accessTokenGenerator.Generate(user.Id)
             }
         };
     }

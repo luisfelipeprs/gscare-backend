@@ -20,6 +20,65 @@ public class Version0000001 : Migration
             .WithColumn("ValorPagoMensal").AsString(255).NotNullable()
             .WithColumn("ValorDoPlantaoDaProfissional").AsString(255).NotNullable();
 
+        // Employee Table
+        Create.Table("Employees")
+            .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+            .WithColumn("NomeCompleto").AsString(255).NotNullable()
+            .WithColumn("Cpf").AsString(255).NotNullable()
+            .WithColumn("Identidade").AsString(255).NotNullable()
+            .WithColumn("EnderecoComCep").AsString(255).NotNullable()
+            .WithColumn("DisponibilidadeDeHorario").AsInt32().NotNullable()
+            .WithColumn("FotoIdentidade").AsString(255).Nullable()
+            .WithColumn("FotoCpf").AsString(255).Nullable()
+            .WithColumn("FotoComprovanteResidencia").AsString(255).Nullable()
+            .WithColumn("CertificadoDoCurso").AsString(255).Nullable()
+            .WithColumn("Mei").AsString(255).Nullable()
+            .WithColumn("NadaConsta").AsString(255).Nullable();
+
+        // Patient Table
+        Create.Table("Patients")
+            .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+            .WithColumn("NomeCompleto").AsString(255).NotNullable()
+            .WithColumn("Idade").AsInt32().NotNullable()
+            .WithColumn("Patologia").AsString(255).NotNullable()
+            .WithColumn("EnderecoDeAtendimentoComCep").AsString(255).NotNullable()
+            .WithColumn("NomeCompletoDoResponsavelFinanceiro").AsString(255).NotNullable()
+            .WithColumn("DataDePagamento").AsString(255).NotNullable()
+            .WithColumn("FormaDePagamento").AsString(255).NotNullable()
+            .WithColumn("GrauDeParentesco").AsString(255).NotNullable()
+            .WithColumn("Identidade").AsString(255).NotNullable()
+            .WithColumn("Cpf").AsString(255).NotNullable()
+            .WithColumn("Email").AsString(255).NotNullable()
+            .WithColumn("Celular").AsString(255).NotNullable();
+
+        // User Table
+        Create.Table("Users")
+            .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+            .WithColumn("Name").AsString(255).NotNullable()
+            .WithColumn("Email").AsString(255).NotNullable()
+            .WithColumn("Password").AsString(255).NotNullable()
+            .WithColumn("UserType").AsInt32().NotNullable()
+            .WithColumn("DateOfBirth").AsDateTime().NotNullable()
+            .WithColumn("Gender").AsInt32().NotNullable()
+            .WithColumn("Phone").AsString(255).NotNullable()
+            .WithColumn("Address").AsString(255).NotNullable()
+            .WithColumn("RegistrationDate").AsDateTime().NotNullable()
+            .WithColumn("EmployeeId").AsInt64().Nullable()
+            .WithColumn("PatientId").AsInt64().Nullable()
+            .WithColumn("CompanyId").AsInt64().Nullable();
+
+        Create.ForeignKey("FK_User_Employee")
+            .FromTable("Users").ForeignColumn("EmployeeId")
+            .ToTable("Employees").PrimaryColumn("Id");
+
+        Create.ForeignKey("FK_User_Patient")
+            .FromTable("Users").ForeignColumn("PatientId")
+            .ToTable("Patients").PrimaryColumn("Id");
+
+        Create.ForeignKey("FK_User_Company")
+            .FromTable("Users").ForeignColumn("CompanyId")
+            .ToTable("Companies").PrimaryColumn("Id");
+
         // DailyReport Table
         Create.Table("DailyReports")
             .WithColumn("Id").AsInt64().PrimaryKey().Identity()
@@ -39,21 +98,6 @@ public class Version0000001 : Migration
             .WithColumn("DocumentName").AsString(255).Nullable()
             .WithColumn("DocumentImage").AsString(255).Nullable();
 
-        // Employee Table
-        Create.Table("Employees")
-            .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-            .WithColumn("NomeCompleto").AsString(255).NotNullable()
-            .WithColumn("Cpf").AsString(255).NotNullable()
-            .WithColumn("Identidade").AsString(255).NotNullable()
-            .WithColumn("EnderecoComCep").AsString(255).NotNullable()
-            .WithColumn("DisponibilidadeDeHorario").AsInt32().NotNullable()
-            .WithColumn("FotoIdentidade").AsString(255).Nullable()
-            .WithColumn("FotoCpf").AsString(255).Nullable()
-            .WithColumn("FotoComprovanteResidencia").AsString(255).Nullable()
-            .WithColumn("CertificadoDoCurso").AsString(255).Nullable()
-            .WithColumn("Mei").AsString(255).Nullable()
-            .WithColumn("NadaConsta").AsString(255).Nullable();
-
         // Medicament Table
         Create.Table("Medicaments")
             .WithColumn("Id").AsInt32().PrimaryKey().Identity()
@@ -62,22 +106,6 @@ public class Version0000001 : Migration
             .WithColumn("Amount").AsString(255).NotNullable()
             .WithColumn("Hours").AsString(255).NotNullable()
             .WithColumn("Frequency").AsString(255).NotNullable();
-
-        // Patient Table
-        Create.Table("Patients")
-            .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-            .WithColumn("NomeCompleto").AsString(255).NotNullable()
-            .WithColumn("Idade").AsInt32().NotNullable()
-            .WithColumn("Patologia").AsString(255).NotNullable()
-            .WithColumn("EnderecoDeAtendimentoComCep").AsString(255).NotNullable()
-            .WithColumn("NomeCompletoDoResponsavelFinanceiro").AsString(255).NotNullable()
-            .WithColumn("DataDePagamento").AsString(255).NotNullable()
-            .WithColumn("FormaDePagamento").AsString(255).NotNullable()
-            .WithColumn("GrauDeParentesco").AsString(255).NotNullable()
-            .WithColumn("Identidade").AsString(255).NotNullable()
-            .WithColumn("Cpf").AsString(255).NotNullable()
-            .WithColumn("Email").AsString(255).NotNullable()
-            .WithColumn("Celular").AsString(255).NotNullable();
 
         // Service Table
         Create.Table("Services")
@@ -95,19 +123,6 @@ public class Version0000001 : Migration
             .WithColumn("Comentario").AsString(255).NotNullable()
             .WithColumn("Quantidade").AsString(255).NotNullable()
             .WithColumn("Data").AsString(255).NotNullable();
-
-        // User Table
-        Create.Table("Users")
-            .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-            .WithColumn("Name").AsString(255).NotNullable()
-            .WithColumn("Email").AsString(255).NotNullable()
-            .WithColumn("Password").AsString(255).NotNullable()
-            .WithColumn("UserType").AsInt32().NotNullable()
-            .WithColumn("DateOfBirth").AsDateTime().NotNullable()
-            .WithColumn("Gender").AsInt32().NotNullable()
-            .WithColumn("Phone").AsString(255).NotNullable()
-            .WithColumn("Address").AsString(255).NotNullable()
-            .WithColumn("RegistrationDate").AsDateTime().NotNullable();
 
         // Warning Table
         Create.Table("Warnings")

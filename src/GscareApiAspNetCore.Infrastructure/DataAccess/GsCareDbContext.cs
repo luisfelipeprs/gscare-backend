@@ -16,7 +16,26 @@ internal class GsCareDbContext: DbContext
     public DbSet<Service> Services { get; set; } // = atendimento
     public DbSet<DailyReport> DailyReports { get; set; } // = Relatório diário e eventos inesperados
 
-
     // Gestão de documentos do paciente
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<User>()
+            .HasOne(u => u.Employee)
+            .WithOne(e => e.User)
+            .HasForeignKey<User>(u => u.EmployeeId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<User>()
+            .HasOne(u => u.Patient)
+            .WithOne(p => p.User)
+            .HasForeignKey<User>(u => u.PatientId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<User>()
+            .HasOne(u => u.Company)
+            .WithOne(c => c.User)
+            .HasForeignKey<User>(u => u.CompanyId)
+            .OnDelete(DeleteBehavior.Cascade);
+    }
 }

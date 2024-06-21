@@ -16,5 +16,8 @@ public class Employee
     public string? CertificadoDoCurso { get; set; }
     public string? Mei { get; set; }
     public string? NadaConsta { get; set; }
+
+    // Navigation property
+    public User? User { get; set; }
 }
 

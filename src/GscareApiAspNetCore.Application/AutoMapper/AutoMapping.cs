@@ -19,10 +19,19 @@ public class AutoMapping : Profile
 
     private void RequestToEntity()
     {
-        CreateMap<RequestUserJson, User>();
+        CreateMap<RequestUserJson, User>()
+            .ForMember(dest => dest.Employee, opt => opt.MapFrom(src => src.Employee))
+            .ForMember(dest => dest.Patient, opt => opt.MapFrom(src => src.Patient))
+            .ForMember(dest => dest.Company, opt => opt.MapFrom(src => src.Company));
+
         CreateMap<RequestEmployeeJson, Employee>();
         CreateMap<RequestPatientJson, Patient>();
         CreateMap<RequestCompanyJson, Company>();
+
+        //CreateMap<RequestUserJson, User>();
+        //CreateMap<RequestEmployeeJson, Employee>();
+        //CreateMap<RequestPatientJson, Patient>();
+        //CreateMap<RequestCompanyJson, Company>();
         CreateMap<RequestWarningJson, Warning>();
         CreateMap<RequestMedicamentJson, Medicament>();
         CreateMap<RequestSupplyJson, Supply>();
@@ -32,6 +41,10 @@ public class AutoMapping : Profile
 
     private void EntityToResponse()
     {
+        CreateMap<User, ResponseUserProfileJson>()
+            .ForMember(dest => dest.Employee, opt => opt.MapFrom(src => src.Employee))
+            .ForMember(dest => dest.Patient, opt => opt.MapFrom(src => src.Patient))
+            .ForMember(dest => dest.Company, opt => opt.MapFrom(src => src.Company));
 
         //DailyReport
         CreateMap<DailyReport, ResponseRegisteredDailyReportJson>();
@@ -78,5 +91,6 @@ public class AutoMapping : Profile
         CreateMap<User, ResponseShortUserJson>();
         CreateMap<User, ResponseUserJson>();
         CreateMap<User, ResponseUserProfileJson>();
+
     }
 }

@@ -11,44 +11,44 @@ internal class PatientRepository : IPatientReadOnlyRepository, IPatientUpdateOnl
     {
         _dbContext = dbContext;
     }
-
-    public async Task Add(Patient Patient)
+    async Task<Patient?> IPatientUpdateOnlyRepository.GetById(long id)
     {
-        await _dbContext.Patients.AddAsync(Patient);
+        return await _dbContext.Patients.FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public async Task<bool> Delete(long id)
+
+    async Task<Patient?> IPatientReadOnlyRepository.GetById(long id)
     {
-        var result = await _dbContext.Patients.FirstOrDefaultAsync(Patient => Patient.Id == id);
-
-        if (result is null)
-        {
-            return false;
-        }
-
-        _dbContext.Patients.Remove(result);
-
-        return true;
+        return await _dbContext.Patients.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
     }
 
     public async Task<List<Patient>> GetAll()
     {
         return await _dbContext.Patients.AsNoTracking().ToListAsync();
-        //await _dbContext.Patients.Where(e => e.UserId == id)
     }
 
-    async Task<Patient?> IPatientReadOnlyRepository.GetById(long id)
+    public async Task Add(Patient patient)
     {
-        return await _dbContext.Patients.AsNoTracking().FirstOrDefaultAsync(Patient => Patient.Id == id);
+        await _dbContext.Patients.AddAsync(patient);
     }
 
-    async Task<Patient?> IPatientUpdateOnlyRepository.GetById(long id)
+    public void Update(Patient patient)
     {
-        return await _dbContext.Patients.FirstOrDefaultAsync(Patient => Patient.Id == id);
+        _dbContext.Patients.Update(patient);
     }
 
-    public void Update(Patient Patient)
+    public async Task<bool> Delete(long id)
     {
-        _dbContext.Patients.Update(Patient);
+        var patient = await _dbContext.Patients.FirstOrDefaultAsync(p => p.Id == id);
+        if (patient == null)
+            return false;
+
+        _dbContext.Patients.Remove(patient);
+        return true;
     }
+
+    //=============================
+
+
+
 }

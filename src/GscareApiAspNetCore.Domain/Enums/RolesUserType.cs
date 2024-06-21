@@ -1,8 +1,8 @@
 ﻿namespace GscareApiAspNetCore.Domain.Enums;
 
-public enum UserTypeType
+public enum RolesUserType
 {
-    Administrator = 0,
+    Company = 0,
     Patient = 1,
     Employee = 2,
 }

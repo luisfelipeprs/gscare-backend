@@ -2,6 +2,7 @@
 using GscareApiAspNetCore.Communication.Responses;
 using GscareApiAspNetCore.Domain.Repositories;
 using GscareApiAspNetCore.Domain.Services.LoggedUser;
+using GscareApiAspNetCore.Exception.ExceptionBase;
 
 namespace GscareApiAspNetCore.Application.UseCases;
 internal class GetUserProfileUseCase : IGetUserProfileUseCase
@@ -19,8 +20,16 @@ internal class GetUserProfileUseCase : IGetUserProfileUseCase
 
     async public Task<ResponseUserProfileJson> Execute()
     {
-        var user = await _loggedUser.User();
+        var loggedInUser = await _loggedUser.User();
+        var user = await _repository.GetByIdWithRelations(loggedInUser.Id);
 
-        return _mapper.Map<ResponseUserProfileJson>(user);
+        if (user == null)
+        {
+            throw new NotFoundException("User not found");
+        }
+
+        var response = _mapper.Map<ResponseUserProfileJson>(user);
+
+        return response;
     }
 }

@@ -18,6 +18,7 @@ internal class LoginUserUseCase : ILoginUserUseCase
     public async Task<ResponseTokenJson> Execute(RequestLoginJson request)
     {
         var user = await _repository.GetByEmail(request.Email);
+
         if(user == null || user.Password != request.Password)
         {
             throw new UnauthorizedAccessException("Invalid credentials.");
