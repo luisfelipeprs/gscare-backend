@@ -37,5 +37,17 @@ internal class GsCareDbContext: DbContext
             .WithOne(c => c.User)
             .HasForeignKey<User>(u => u.CompanyId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Employee>()
+            .HasOne(e => e.CurrentCompany)
+            .WithMany(c => c.Employees)
+            .HasForeignKey(e => e.CurrentCompanyId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Patient>()
+            .HasOne(p => p.CurrentCompany)
+            .WithMany(c => c.Patients)
+            .HasForeignKey(p => p.CurrentCompanyId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

@@ -17,7 +17,8 @@ public class Employee
     public string? Mei { get; set; }
     public string? NadaConsta { get; set; }
 
-    // Navigation property
+    // Relacionamento
+    public long? CurrentCompanyId { get; set; }
+    public Company? CurrentCompany { get; set; }
     public User? User { get; set; }
 }
-

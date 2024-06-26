@@ -12,6 +12,42 @@ internal class EmployeesRepository : IEmployeeReadOnlyRepository, IEmployeeWrite
         _dbContext = dbContext;
     }
 
+    // No repositório UsersRepository
+    public async Task AssociateEmployeeWithCompany(long employeeId, long companyId)
+    {
+        var employee = await _dbContext.Employees.FirstOrDefaultAsync(e => e.Id == employeeId);
+        if (employee == null)
+        {
+            throw new ArgumentException("Employee not found", nameof(employeeId));
+        }
+
+        var company = await _dbContext.Companies.FirstOrDefaultAsync(c => c.Id == companyId);
+        if (company == null)
+        {
+            throw new ArgumentException("Company not found", nameof(companyId));
+        }
+
+        employee.CurrentCompanyId = companyId;
+        employee.CurrentCompany = company;
+
+        await _dbContext.SaveChangesAsync();
+    }
+    // No repositório UsersRepository
+    public async Task DisassociateEmployeeFromCompany(long employeeId)
+    {
+        var employee = await _dbContext.Employees.FirstOrDefaultAsync(e => e.Id == employeeId);
+        if (employee == null)
+        {
+            throw new ArgumentException("Employee not found", nameof(employeeId));
+        }
+
+        employee.CurrentCompanyId = null;
+        employee.CurrentCompany = null;
+
+        await _dbContext.SaveChangesAsync();
+    }
+
+
     async Task<Employee?> IEmployeeReadOnlyRepository.GetById(long id)
     {
         return await _dbContext.Employees.AsNoTracking().FirstOrDefaultAsync(employee => employee.Id == id);
@@ -46,8 +82,17 @@ internal class EmployeesRepository : IEmployeeReadOnlyRepository, IEmployeeWrite
         _dbContext.Employees.Remove(employee);
         return true;
     }
-    //===============================
 
+    public async Task<List<Employee>> GetEmployeesByCompanyId(long companyId)
+    {
+        return await _dbContext.Employees
+            .Where(e => e.CurrentCompanyId == companyId)
+            .AsNoTracking()
+            .ToListAsync();
+    }
 
-    
+    public async Task<Company?> GetCurrentCompanyByEmployee(long currentCompanyId)
+    {
+        return await _dbContext.Companies.FirstOrDefaultAsync(c => c.Id == currentCompanyId);
+    }
 }

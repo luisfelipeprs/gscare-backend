@@ -1,5 +1,5 @@
 ﻿using GscareApiAspNetCore.Api.Attributes;
-using GscareApiAspNetCore.Application.UseCases;
+using GscareApiAspNetCore.Application.UseCases.EmployeeUseCases;
 using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Communication.Responses;
 using Microsoft.AspNetCore.Authorization;
@@ -39,6 +39,16 @@ public class EmployeesController : ControllerBase
         return NoContent();
     }
 
+    [HttpGet("get-employees-by-current-company")]
+    [AuthenticatedUser]
+    [ProducesResponseType(typeof(ResponseEmployeesJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetEmployeesByCurrentCompany([FromServices] IGetEmployeesByCurrentCompanyUseCase useCase)
+    {
+        var employees = await useCase.Execute();
+        return Ok(employees);
+    }
+
     [HttpGet]
     [Route("{id}")]
     [ProducesResponseType(typeof(ResponseEmployeeJson), StatusCodes.Status200OK)]
@@ -48,8 +58,19 @@ public class EmployeesController : ControllerBase
         [FromRoute] long id)
     {
         var response = await useCases.Execute(id);
-
         return Ok(response);
+    }
+
+    [HttpGet]
+    [Route("current-company")]
+    [AuthenticatedUser]
+    [ProducesResponseType(typeof(ResponseEmployeeJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetById(
+        [FromServices] IGetCurrentCompanyByEmployeeUseCase useCase)
+    {
+        var company = await useCase.Execute();
+        return Ok(company);
     }
 
     [HttpDelete]
@@ -77,6 +98,33 @@ public class EmployeesController : ControllerBase
     {
         await useCase.Execute(id, request);
 
+        return NoContent();
+    }
+    
+    [HttpPatch]
+    [Route("{employeeId}/associate-company/{companyId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> AssociateEmployeeWithCompany(
+    [FromServices] IAssociateEmployeeWithCompanyUseCase useCase,
+    [FromRoute] long employeeId,
+    [FromRoute] long companyId)
+    {
+        await useCase.Execute(employeeId, companyId);
+        return NoContent();
+    }
+
+    [HttpPatch]
+    [Route("{employeeId}/disassociate-company")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DisassociateEmployeeFromCompany(
+    [FromServices] IDisassociateEmployeeFromCompanyUseCase useCase,
+    [FromRoute] long employeeId)
+    {
+        await useCase.Execute(employeeId);
         return NoContent();
     }
 }

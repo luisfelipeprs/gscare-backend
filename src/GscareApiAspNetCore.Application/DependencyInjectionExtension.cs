@@ -1,9 +1,12 @@
 ﻿using GscareApiAspNetCore.Application.AutoMapper;
-using GscareApiAspNetCore.Application.UseCases;
+using GscareApiAspNetCore.Application.UseCases.CompanyUseCases;
 using GscareApiAspNetCore.Application.UseCases.DailyReportUseCases;
+using GscareApiAspNetCore.Application.UseCases.EmployeeUseCases;
 using GscareApiAspNetCore.Application.UseCases.MedicamentUseCases;
+using GscareApiAspNetCore.Application.UseCases.PatientUseCases;
 using GscareApiAspNetCore.Application.UseCases.ServiceUseCases;
 using GscareApiAspNetCore.Application.UseCases.SupplyUseCases;
+using GscareApiAspNetCore.Application.UseCases.UserUseCases;
 using GscareApiAspNetCore.Application.UseCases.WarningUseCases;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -72,6 +75,10 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetEmployeeByIdUseCase, GetEmployeeByIdUseCase>();
         services.AddScoped<IDeleteEmployeeUseCase, DeleteEmployeeUseCase>();
         services.AddScoped<IUpdateEmployeeUseCase, UpdateEmployeeUseCase>();
+        services.AddScoped<IGetCurrentCompanyByEmployeeUseCase, GetCurrentCompanyByEmployeeUseCase>();
+        services.AddScoped<IAssociateEmployeeWithCompanyUseCase, AssociateEmployeeWithCompanyUseCase>();
+        services.AddScoped<IDisassociateEmployeeFromCompanyUseCase, DisassociateEmployeeFromCompanyUseCase>();
+        services.AddScoped<IGetEmployeesByCurrentCompanyUseCase, GetEmployeesByCurrentCompanyUseCase>();
 
         //Patient
         services.AddScoped<IRegisterPatientUseCase, RegisterPatientUseCase>();
@@ -79,6 +86,10 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetPatientByIdUseCase, GetPatientByIdUseCase>();
         services.AddScoped<IDeletePatientUseCase, DeletePatientUseCase>();
         services.AddScoped<IUpdatePatientUseCase, UpdatePatientUseCase>();
+        services.AddScoped<IGetCurrentCompanyByPatientUseCase, GetCurrentCompanyByPatientUseCase>();
+        services.AddScoped<IAssociatePatientWithCompanyUseCase, AssociatePatientWithCompanyUseCase>();
+        services.AddScoped<IDisassociatePatientFromCompanyUseCase, DisassociatePatientFromCompanyUseCase>();
+        services.AddScoped<IGetPatientsByCurrentCompanyUseCase, GetPatientsByCurrentCompanyUseCase>();
 
         //User
         services.AddScoped<IGetUserProfileUseCase, GetUserProfileUseCase>();

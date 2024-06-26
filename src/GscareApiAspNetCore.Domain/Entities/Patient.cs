@@ -14,7 +14,7 @@ public class Patient
     public string Cpf { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string Celular { get; set; } = string.Empty;
-
-    // Navigation property
+    public long? CurrentCompanyId { get; set; }
+    public Company? CurrentCompany { get; set; }
     public User? User { get; set; }
 }

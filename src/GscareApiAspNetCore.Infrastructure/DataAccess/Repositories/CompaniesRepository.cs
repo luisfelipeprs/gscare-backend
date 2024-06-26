@@ -45,4 +45,23 @@ internal class CompaniesRepository : ICompanyReadOnlyRepository, ICompanyUpdateO
         _dbContext.Companies.Remove(company);
         return true;
     }
+
+    // No repositório PatientRepository
+    public async Task<List<Patient>> GetAllPatientsByCompanyId(long companyId)
+    {
+        return await _dbContext.Patients
+            .Where(p => p.CurrentCompanyId == companyId)
+            .AsNoTracking()
+            .ToListAsync();
+    }
+
+    // No repositório UsersRepository
+    public async Task<List<Employee>> GetAllEmployeesByCompanyId(long companyId)
+    {
+        return await _dbContext.Employees
+            .Where(e => e.CurrentCompanyId == companyId)
+            .AsNoTracking()
+            .ToListAsync();
+    }
+
 }

@@ -1,8 +1,8 @@
 ﻿using GscareApiAspNetCore.Api.Attributes;
-using GscareApiAspNetCore.Application.UseCases;
+using GscareApiAspNetCore.Application.UseCases.EmployeeUseCases;
+using GscareApiAspNetCore.Application.UseCases.PatientUseCases;
 using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Communication.Responses;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GscareApiAspNetCore.Api.Controllers;
@@ -37,6 +37,16 @@ public class PatientController : ControllerBase
         return NoContent();
     }
 
+    [HttpGet("get-patients-by-current-company")]
+    [AuthenticatedUser]
+    [ProducesResponseType(typeof(ResponsePatientsJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetPatientsByCurrentCompany([FromServices] IGetPatientsByCurrentCompanyUseCase useCase)
+    {
+        var patients = await useCase.Execute();
+        return Ok(patients);
+    }
+
     [HttpGet]
     [Route("{id}")]
     [ProducesResponseType(typeof(ResponsePatientJson), StatusCodes.Status200OK)]
@@ -48,6 +58,17 @@ public class PatientController : ControllerBase
         var response = await useCases.Execute(id);
 
         return Ok(response);
+    }
+
+    [HttpGet]
+    [Route("current-company")]
+    [ProducesResponseType(typeof(ResponsePatientJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetById(
+        [FromServices] IGetCurrentCompanyByPatientUseCase useCase)
+    {
+        var company = await useCase.Execute();
+        return Ok(company);
     }
 
     [HttpDelete]
@@ -75,6 +96,33 @@ public class PatientController : ControllerBase
     {
         await useCase.Execute(id, request);
 
+        return NoContent();
+    }
+
+    [HttpPatch]
+    [Route("{patientId}/associate-company/{companyId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> AssociatePatientWithCompany(
+    [FromServices] IAssociatePatientWithCompanyUseCase useCase,
+    [FromRoute] long patientId,
+    [FromRoute] long companyId)
+    {
+        await useCase.Execute(patientId, companyId);
+        return NoContent();
+    }
+
+    [HttpPatch]
+    [Route("{patientId}/disassociate-company")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DisassociatePatientFromCompany(
+    [FromServices] IDisassociatePatientFromCompanyUseCase useCase,
+    [FromRoute] long patientId)
+    {
+        await useCase.Execute(patientId);
         return NoContent();
     }
 }

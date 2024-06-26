@@ -1,5 +1,5 @@
 ﻿using GscareApiAspNetCore.Api.Attributes;
-using GscareApiAspNetCore.Application.UseCases;
+using GscareApiAspNetCore.Application.UseCases.UserUseCases;
 using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;

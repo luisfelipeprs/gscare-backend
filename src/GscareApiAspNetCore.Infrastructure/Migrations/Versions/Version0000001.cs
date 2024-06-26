@@ -2,11 +2,7 @@
 
 namespace GscareApiAspNetCore.Infrastructure.Migrations.Versions;
 
-//[Migration(1, "Create table to sabe the user's information")]
-//public class Version0000001 : ForwardOnlyMigration
-//public class Version0000001 : VersionBase
-
-[Migration(1, "Create initial tables and relationships")]
+[Migration(1, "Create initial tables and relationships, add current company to employees and patients")]
 public class Version0000001 : Migration
 {
     public override void Up()
@@ -33,7 +29,8 @@ public class Version0000001 : Migration
             .WithColumn("FotoComprovanteResidencia").AsString(255).Nullable()
             .WithColumn("CertificadoDoCurso").AsString(255).Nullable()
             .WithColumn("Mei").AsString(255).Nullable()
-            .WithColumn("NadaConsta").AsString(255).Nullable();
+            .WithColumn("NadaConsta").AsString(255).Nullable()
+            .WithColumn("CurrentCompanyId").AsInt64().Nullable();
 
         // Patient Table
         Create.Table("Patients")
@@ -49,7 +46,8 @@ public class Version0000001 : Migration
             .WithColumn("Identidade").AsString(255).NotNullable()
             .WithColumn("Cpf").AsString(255).NotNullable()
             .WithColumn("Email").AsString(255).NotNullable()
-            .WithColumn("Celular").AsString(255).NotNullable();
+            .WithColumn("Celular").AsString(255).NotNullable()
+            .WithColumn("CurrentCompanyId").AsInt64().Nullable();
 
         // User Table
         Create.Table("Users")
@@ -132,10 +130,26 @@ public class Version0000001 : Migration
             .WithColumn("DataInicial").AsString(255).NotNullable()
             .WithColumn("DataFinal").AsString(255).NotNullable()
             .WithColumn("Mensagem").AsString(255).NotNullable();
+
+        // Foreign key relationship for CurrentCompanyId
+        Create.ForeignKey("FK_Employees_CurrentCompany")
+            .FromTable("Employees").ForeignColumn("CurrentCompanyId")
+            .ToTable("Companies").PrimaryColumn("Id");
+
+        Create.ForeignKey("FK_Patients_CurrentCompany")
+            .FromTable("Patients").ForeignColumn("CurrentCompanyId")
+            .ToTable("Companies").PrimaryColumn("Id");
     }
 
     public override void Down()
     {
+        Delete.ForeignKey("FK_Employees_CurrentCompany").OnTable("Employees");
+        Delete.ForeignKey("FK_Patients_CurrentCompany").OnTable("Patients");
+
+        Delete.ForeignKey("FK_User_Employee").OnTable("Users");
+        Delete.ForeignKey("FK_User_Patient").OnTable("Users");
+        Delete.ForeignKey("FK_User_Company").OnTable("Users");
+
         Delete.Table("Warnings");
         Delete.Table("Users");
         Delete.Table("Supplies");

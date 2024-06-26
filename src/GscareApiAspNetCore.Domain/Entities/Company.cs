@@ -10,4 +10,6 @@ public class Company
 
     // Navigation property
     public User? User { get; set; }
+    public ICollection<Employee> Employees { get; set; } = new List<Employee>();
+    public ICollection<Patient> Patients { get; set; } = new List<Patient>();
 }

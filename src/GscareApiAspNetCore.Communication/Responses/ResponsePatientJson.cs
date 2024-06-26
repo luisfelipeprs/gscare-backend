@@ -14,4 +14,8 @@ public class ResponsePatientJson
     public string Cpf { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string Celular { get; set; } = string.Empty;
+
+    // Adicione essa propriedade se desejado
+    //public ResponseCompanyJson? CurrentCompany { get; set; }
+    public long CurrentCompanyId { get; set; }
 }

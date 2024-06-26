@@ -17,4 +17,7 @@ public class ResponseEmployeeJson
     public string? Mei { get; set; }
     public string? NadaConsta { get; set; }
 
+    // Adicione essa propriedade se desejado
+    //public ResponseCompanyJson? CurrentCompany { get; set; }
+    public long CurrentCompanyId { get; set; }
 }
