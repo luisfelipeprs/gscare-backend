@@ -122,6 +122,19 @@ public class Version0000001 : Migration
             .WithColumn("Quantidade").AsString(255).NotNullable()
             .WithColumn("Data").AsString(255).NotNullable();
 
+        // Stock Table
+        Create.Table("Stocks")
+            .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+            .WithColumn("Nome_Produto").AsString(255).NotNullable()
+            .WithColumn("Categoria_Produto").AsString(255).NotNullable()
+            .WithColumn("Quantidade_Estoque").AsInt32().NotNullable()
+            .WithColumn("Data_Validade").AsDate().NotNullable()
+            .WithColumn("Data_Entrada_Estoque").AsDate().NotNullable()
+            .WithColumn("Localizacao_Estoque").AsString(255).NotNullable()
+            .WithColumn("Fornecedor").AsString(255).NotNullable()
+            .WithColumn("Preco_Unitario").AsDecimal().NotNullable()
+            .WithColumn("Unidade_Medida").AsString(255).NotNullable();
+
         // Warning Table
         Create.Table("Warnings")
             .WithColumn("Id").AsInt64().PrimaryKey().Identity()
@@ -160,5 +173,6 @@ public class Version0000001 : Migration
         Delete.Table("Documents");
         Delete.Table("DailyReports");
         Delete.Table("Companies");
+        Delete.Table("Stocks");
     }
 }

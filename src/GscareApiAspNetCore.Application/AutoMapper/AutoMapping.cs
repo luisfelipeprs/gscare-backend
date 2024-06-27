@@ -6,6 +6,7 @@ using GscareApiAspNetCore.Communication.Responses.EmployeeResponses;
 using GscareApiAspNetCore.Communication.Responses.MedicamentResponses;
 using GscareApiAspNetCore.Communication.Responses.PatientResponses;
 using GscareApiAspNetCore.Communication.Responses.ServiceReponses;
+using GscareApiAspNetCore.Communication.Responses.StockResponses;
 using GscareApiAspNetCore.Communication.Responses.SupplyResponses;
 using GscareApiAspNetCore.Communication.Responses.UserResponses;
 using GscareApiAspNetCore.Communication.Responses.WarningResponses;
@@ -33,6 +34,7 @@ public class AutoMapping : Profile
         CreateMap<RequestWarningJson, Warning>();
         CreateMap<RequestMedicamentJson, Medicament>();
         CreateMap<RequestSupplyJson, Supply>();
+        CreateMap<RequestStockJson, Stock>();
         CreateMap<RequestServiceJson, Service>();
         CreateMap<RequestDailyReportJson, DailyReport>();
     }
@@ -66,6 +68,11 @@ public class AutoMapping : Profile
         CreateMap<Supply, ResponseRegisteredSupplyJson>();
         CreateMap<Supply, ResponseShortSupplyJson>();
         CreateMap<Supply, ResponseSupplyJson>();
+
+        //Stock  
+        CreateMap<Stock, ResponseRegisteredStockJson>();
+        CreateMap<Stock, ResponseShortStockJson>();
+        CreateMap<Stock, ResponseStockJson>();
 
         //Medicament 
         CreateMap<Medicament, ResponseRegisteredMedicamentJson>();

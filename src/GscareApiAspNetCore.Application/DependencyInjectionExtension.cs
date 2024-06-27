@@ -5,6 +5,7 @@ using GscareApiAspNetCore.Application.UseCases.EmployeeUseCases;
 using GscareApiAspNetCore.Application.UseCases.MedicamentUseCases;
 using GscareApiAspNetCore.Application.UseCases.PatientUseCases;
 using GscareApiAspNetCore.Application.UseCases.ServiceUseCases;
+using GscareApiAspNetCore.Application.UseCases.StockUseCases;
 using GscareApiAspNetCore.Application.UseCases.SupplyUseCases;
 using GscareApiAspNetCore.Application.UseCases.UserUseCases;
 using GscareApiAspNetCore.Application.UseCases.WarningUseCases;
@@ -47,6 +48,13 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetSupplyByIdUseCase, GetSupplyByIdUseCase>();
         services.AddScoped<IDeleteSupplyUseCase, DeleteSupplyUseCase>();
         services.AddScoped<IUpdateSupplyUseCase, UpdateSupplyUseCase>();
+
+        //Stock
+        services.AddScoped<IRegisterStockUseCase, RegisterStockUseCase>();
+        services.AddScoped<IGetAllStocksUseCase, GetAllStocksUseCase>();
+        services.AddScoped<IGetStockByIdUseCase, GetStockByIdUseCase>();
+        services.AddScoped<IDeleteStockUseCase, DeleteStockUseCase>();
+        services.AddScoped<IUpdateStockUseCase, UpdateStockUseCase>();
 
         //Medicament
         services.AddScoped<IRegisterMedicamentUseCase, RegisterMedicamentUseCase>();

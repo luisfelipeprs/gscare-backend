@@ -15,6 +15,7 @@ internal class GsCareDbContext: DbContext
     public DbSet<Supply> Supplies { get; set; }
     public DbSet<Service> Services { get; set; } // = atendimento
     public DbSet<DailyReport> DailyReports { get; set; } // = Relatório diário e eventos inesperados
+    public DbSet<Stock> Stocks { get; set; } // Add this line
 
     // Gestão de documentos do paciente
 

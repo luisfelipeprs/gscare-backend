@@ -6,6 +6,7 @@ using GscareApiAspNetCore.Domain.Repositories.EmployeeRepositories;
 using GscareApiAspNetCore.Domain.Repositories.MedicamentRepositories;
 using GscareApiAspNetCore.Domain.Repositories.PatientRepositories;
 using GscareApiAspNetCore.Domain.Repositories.ServiceRepositories;
+using GscareApiAspNetCore.Domain.Repositories.StockRepositories;
 using GscareApiAspNetCore.Domain.Repositories.SupplyRepositories;
 using GscareApiAspNetCore.Domain.Repositories.UserRepositories;
 using GscareApiAspNetCore.Domain.Repositories.WarningRepositories;
@@ -54,6 +55,11 @@ public static class DependencyInjectionExtension
         services.AddScoped<ISupplyReadOnlyRepository, SupplyRepository>();
         services.AddScoped<ISupplyWriteOnlyRepository, SupplyRepository>();
         services.AddScoped<ISupplyUpdateOnlyRepository, SupplyRepository>();
+
+        // Stock
+        services.AddScoped<IStockReadOnlyRepository, StockRepository>();
+        services.AddScoped<IStockWriteOnlyRepository, StockRepository>();
+        services.AddScoped<IStockUpdateOnlyRepository, StockRepository>();
 
         // Medicament
         services.AddScoped<IMedicamentReadOnlyRepository, MedicamentRepository>();
