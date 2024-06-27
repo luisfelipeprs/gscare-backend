@@ -1,6 +1,7 @@
 ﻿using GscareApiAspNetCore.Domain.Repositories;
 using GscareApiAspNetCore.Exception.ExceptionBase;
 using GscareApiAspNetCore.Exception;
+using GscareApiAspNetCore.Domain.Repositories.PatientRepositories;
 
 namespace GscareApiAspNetCore.Application.UseCases.PatientUseCases;
 public class DeletePatientUseCase : IDeletePatientUseCase

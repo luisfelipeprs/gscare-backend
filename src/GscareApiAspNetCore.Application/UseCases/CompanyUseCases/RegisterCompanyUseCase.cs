@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using GscareApiAspNetCore.Communication.Requests;
-using GscareApiAspNetCore.Communication.Responses;
+using GscareApiAspNetCore.Communication.Responses.CompanyResponses;
 using GscareApiAspNetCore.Domain.Entities;
 using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.CompanyRepositories;
 using GscareApiAspNetCore.Domain.Security.Tokens;
 using GscareApiAspNetCore.Exception.ExceptionBase;
 

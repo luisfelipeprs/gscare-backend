@@ -3,6 +3,7 @@ using GscareApiAspNetCore.Application.UseCases.EmployeeUseCases;
 using GscareApiAspNetCore.Application.UseCases.PatientUseCases;
 using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Communication.Responses;
+using GscareApiAspNetCore.Communication.Responses.PatientResponses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GscareApiAspNetCore.Api.Controllers;

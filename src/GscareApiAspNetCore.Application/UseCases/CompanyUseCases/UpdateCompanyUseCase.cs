@@ -3,6 +3,7 @@ using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Domain.Repositories;
 using GscareApiAspNetCore.Exception.ExceptionBase;
 using GscareApiAspNetCore.Exception;
+using GscareApiAspNetCore.Domain.Repositories.CompanyRepositories;
 
 namespace GscareApiAspNetCore.Application.UseCases.CompanyUseCases;
 internal class UpdateCompanyUseCase : IUpdateCompanyUseCase

@@ -1,5 +1,5 @@
 ﻿using GscareApiAspNetCore.Domain.Entities;
-using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.WarningRepositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace GscareApiAspNetCore.Infrastructure.DataAccess.Repositories;

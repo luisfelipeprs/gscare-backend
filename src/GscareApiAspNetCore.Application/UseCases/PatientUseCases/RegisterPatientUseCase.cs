@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using GscareApiAspNetCore.Communication.Requests;
-using GscareApiAspNetCore.Communication.Responses;
+using GscareApiAspNetCore.Communication.Responses.PatientResponses;
 using GscareApiAspNetCore.Domain.Entities;
 using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.PatientRepositories;
 using GscareApiAspNetCore.Exception.ExceptionBase;
 
 namespace GscareApiAspNetCore.Application.UseCases.PatientUseCases;

@@ -2,8 +2,10 @@
 using GscareApiAspNetCore.Communication.Enums;
 using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Communication.Responses;
+using GscareApiAspNetCore.Communication.Responses.EmployeeResponses;
 using GscareApiAspNetCore.Domain.Entities;
 using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.EmployeeRepositories;
 using GscareApiAspNetCore.Domain.Security.Tokens;
 using GscareApiAspNetCore.Exception.ExceptionBase;
 

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GscareApiAspNetCore.Communication.Responses;
-using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Communication.Responses.EmployeeResponses;
+using GscareApiAspNetCore.Domain.Repositories.EmployeeRepositories;
 using GscareApiAspNetCore.Domain.Services.LoggedUser;
 
 namespace GscareApiAspNetCore.Application.UseCases.EmployeeUseCases;

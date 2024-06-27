@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GscareApiAspNetCore.Communication.Responses;
-using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Communication.Responses.PatientResponses;
+using GscareApiAspNetCore.Domain.Repositories.PatientRepositories;
 using GscareApiAspNetCore.Domain.Services.LoggedUser;
 using System;
 using System.Collections.Generic;

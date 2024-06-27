@@ -1,4 +1,5 @@
 ﻿using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.WarningRepositories;
 using GscareApiAspNetCore.Exception;
 using GscareApiAspNetCore.Exception.ExceptionBase;
 

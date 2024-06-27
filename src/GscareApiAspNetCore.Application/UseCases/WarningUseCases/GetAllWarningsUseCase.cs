@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GscareApiAspNetCore.Communication.Responses.WarningResponses;
-using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.WarningRepositories;
 using GscareApiAspNetCore.Domain.Services.LoggedUser;
 
 namespace GscareApiAspNetCore.Application.UseCases.WarningUseCases;

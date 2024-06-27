@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using GscareApiAspNetCore.Communication.Responses;
-using GscareApiAspNetCore.Domain.Repositories;
 using GscareApiAspNetCore.Exception.ExceptionBase;
 using GscareApiAspNetCore.Exception;
+using GscareApiAspNetCore.Domain.Repositories.PatientRepositories;
+using GscareApiAspNetCore.Communication.Responses.PatientResponses;
 
 namespace GscareApiAspNetCore.Application.UseCases.PatientUseCases;
 public class GetPatientByIdUseCase : IGetPatientByIdUseCase

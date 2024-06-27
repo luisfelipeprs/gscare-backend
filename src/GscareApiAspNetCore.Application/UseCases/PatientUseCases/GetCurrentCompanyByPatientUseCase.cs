@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using GscareApiAspNetCore.Communication.Requests;
-using GscareApiAspNetCore.Communication.Responses;
-using GscareApiAspNetCore.Domain.Repositories;
 using GscareApiAspNetCore.Exception.ExceptionBase;
 using GscareApiAspNetCore.Exception;
 using GscareApiAspNetCore.Domain.Services.LoggedUser;
+using GscareApiAspNetCore.Domain.Repositories.PatientRepositories;
+using GscareApiAspNetCore.Communication.Responses.CompanyResponses;
 
 namespace GscareApiAspNetCore.Application.UseCases.PatientUseCases;
 public class GetCurrentCompanyByPatientUseCase : IGetCurrentCompanyByPatientUseCase

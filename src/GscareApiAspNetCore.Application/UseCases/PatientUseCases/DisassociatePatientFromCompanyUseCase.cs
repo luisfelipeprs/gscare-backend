@@ -1,5 +1,5 @@
 ﻿using GscareApiAspNetCore.Application.UseCases.PatientUseCases;
-using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.PatientRepositories;
 
 namespace GscareApiAspNetCore.Application.UseCases.PatientUseCases;
 public class DisassociatePatientFromCompanyUseCase : IDisassociatePatientFromCompanyUseCase

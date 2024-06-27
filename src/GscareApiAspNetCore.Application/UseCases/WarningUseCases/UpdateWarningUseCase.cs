@@ -3,6 +3,7 @@ using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Domain.Repositories;
 using GscareApiAspNetCore.Exception.ExceptionBase;
 using GscareApiAspNetCore.Exception;
+using GscareApiAspNetCore.Domain.Repositories.WarningRepositories;
 
 namespace GscareApiAspNetCore.Application.UseCases.WarningUseCases;
 public class UpdateWarningUseCase : IUpdateWarningUseCase

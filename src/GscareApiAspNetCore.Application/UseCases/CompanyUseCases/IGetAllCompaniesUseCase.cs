@@ -1,4 +1,4 @@
-﻿using GscareApiAspNetCore.Communication.Responses;
+﻿using GscareApiAspNetCore.Communication.Responses.CompanyResponses;
 
 namespace GscareApiAspNetCore.Application.UseCases.CompanyUseCases;
 public interface IGetAllCompaniesUseCase

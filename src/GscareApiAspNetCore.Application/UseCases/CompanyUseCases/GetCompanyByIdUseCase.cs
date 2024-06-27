@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using GscareApiAspNetCore.Communication.Responses;
-using GscareApiAspNetCore.Domain.Repositories;
 using GscareApiAspNetCore.Exception.ExceptionBase;
 using GscareApiAspNetCore.Exception;
+using GscareApiAspNetCore.Domain.Repositories.CompanyRepositories;
+using GscareApiAspNetCore.Communication.Responses.CompanyResponses;
 
 namespace GscareApiAspNetCore.Application.UseCases.CompanyUseCases;
 public class GetCompanyByIdUseCase : IGetCompanyByIdUseCase

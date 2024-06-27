@@ -2,6 +2,7 @@
 using GscareApiAspNetCore.Application.UseCases.UserUseCases;
 using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Communication.Responses;
+using GscareApiAspNetCore.Communication.Responses.UserResponses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GscareApiAspNetCore.Api.Controllers;

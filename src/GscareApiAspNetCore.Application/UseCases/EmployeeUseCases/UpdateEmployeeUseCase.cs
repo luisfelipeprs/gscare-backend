@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.EmployeeRepositories;
 using GscareApiAspNetCore.Exception;
 using GscareApiAspNetCore.Exception.ExceptionBase;
 

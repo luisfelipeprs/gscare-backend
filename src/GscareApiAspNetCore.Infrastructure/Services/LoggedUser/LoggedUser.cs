@@ -1,5 +1,6 @@
 ﻿using GscareApiAspNetCore.Domain.Entities;
-using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.EmployeeRepositories;
+using GscareApiAspNetCore.Domain.Repositories.UserRepositories;
 using GscareApiAspNetCore.Domain.Security.Tokens;
 using GscareApiAspNetCore.Domain.Services.LoggedUser;
 using System.IdentityModel.Tokens.Jwt;

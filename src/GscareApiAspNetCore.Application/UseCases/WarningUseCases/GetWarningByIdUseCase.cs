@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using GscareApiAspNetCore.Communication.Responses;
-using GscareApiAspNetCore.Domain.Repositories;
 using GscareApiAspNetCore.Exception.ExceptionBase;
 using GscareApiAspNetCore.Exception;
 using GscareApiAspNetCore.Communication.Responses.WarningResponses;
+using GscareApiAspNetCore.Domain.Repositories.WarningRepositories;
 
 namespace GscareApiAspNetCore.Application.UseCases.WarningUseCases;
 public class GetWarningByIdUseCase : IGetWarningByIdUseCase

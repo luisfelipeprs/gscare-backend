@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using GscareApiAspNetCore.Communication.Requests;
-using GscareApiAspNetCore.Communication.Responses;
+using GscareApiAspNetCore.Communication.Responses.CompanyResponses;
 using GscareApiAspNetCore.Communication.Responses.DailyReportRepository;
+using GscareApiAspNetCore.Communication.Responses.EmployeeResponses;
 using GscareApiAspNetCore.Communication.Responses.MedicamentResponses;
+using GscareApiAspNetCore.Communication.Responses.PatientResponses;
 using GscareApiAspNetCore.Communication.Responses.ServiceReponses;
 using GscareApiAspNetCore.Communication.Responses.SupplyResponses;
+using GscareApiAspNetCore.Communication.Responses.UserResponses;
 using GscareApiAspNetCore.Communication.Responses.WarningResponses;
 using GscareApiAspNetCore.Domain.Entities;
 

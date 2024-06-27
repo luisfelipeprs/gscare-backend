@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.PatientRepositories;
 
 namespace GscareApiAspNetCore.Application.UseCases.PatientUseCases;
 internal class AssociatePatientWithCompanyUseCase : IAssociatePatientWithCompanyUseCase

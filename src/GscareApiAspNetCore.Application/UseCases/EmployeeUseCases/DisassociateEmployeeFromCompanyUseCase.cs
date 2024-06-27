@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.EmployeeRepositories;
 
 namespace GscareApiAspNetCore.Application.UseCases.EmployeeUseCases;
 public class DisassociateEmployeeFromCompanyUseCase : IDisassociateEmployeeFromCompanyUseCase

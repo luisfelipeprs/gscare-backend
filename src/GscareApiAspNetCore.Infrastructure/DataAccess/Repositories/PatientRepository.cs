@@ -1,5 +1,5 @@
 ﻿using GscareApiAspNetCore.Domain.Entities;
-using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.PatientRepositories;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.Design;
 

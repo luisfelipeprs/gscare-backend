@@ -1,5 +1,5 @@
 ﻿using GscareApiAspNetCore.Communication.Requests;
-using GscareApiAspNetCore.Communication.Responses;
+using GscareApiAspNetCore.Communication.Responses.UserResponses;
 
 namespace GscareApiAspNetCore.Application.UseCases.UserUseCases;
 public interface IRegisterUserUseCase

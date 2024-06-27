@@ -1,6 +1,6 @@
 ﻿using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Communication.Responses;
-using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.UserRepositories;
 using GscareApiAspNetCore.Domain.Security.Tokens;
 
 namespace GscareApiAspNetCore.Application.UseCases.UserUseCases;

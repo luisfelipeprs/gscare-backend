@@ -1,6 +1,6 @@
 ﻿using GscareApiAspNetCore.Domain.Entities;
 using GscareApiAspNetCore.Domain.Enums;
-using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.UserRepositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace GscareApiAspNetCore.Infrastructure.DataAccess.Repositories;

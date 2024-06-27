@@ -1,9 +1,14 @@
 ﻿using FluentMigrator.Runner;
 using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.CompanyRepositories;
 using GscareApiAspNetCore.Domain.Repositories.DailyReportRepositories;
+using GscareApiAspNetCore.Domain.Repositories.EmployeeRepositories;
 using GscareApiAspNetCore.Domain.Repositories.MedicamentRepositories;
+using GscareApiAspNetCore.Domain.Repositories.PatientRepositories;
 using GscareApiAspNetCore.Domain.Repositories.ServiceRepositories;
 using GscareApiAspNetCore.Domain.Repositories.SupplyRepositories;
+using GscareApiAspNetCore.Domain.Repositories.UserRepositories;
+using GscareApiAspNetCore.Domain.Repositories.WarningRepositories;
 using GscareApiAspNetCore.Domain.Security.Tokens;
 using GscareApiAspNetCore.Domain.Services.LoggedUser;
 using GscareApiAspNetCore.Infrastructure.DataAccess;
