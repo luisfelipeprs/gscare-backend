@@ -1,5 +1,6 @@
 ﻿using FluentMigrator.Runner;
 using GscareApiAspNetCore.Domain.Repositories;
+using GscareApiAspNetCore.Domain.Repositories.AppointmentsRepositories;
 using GscareApiAspNetCore.Domain.Repositories.CompanyRepositories;
 using GscareApiAspNetCore.Domain.Repositories.DailyReportRepositories;
 using GscareApiAspNetCore.Domain.Repositories.EmployeeRepositories;
@@ -60,6 +61,11 @@ public static class DependencyInjectionExtension
         services.AddScoped<IStockReadOnlyRepository, StockRepository>();
         services.AddScoped<IStockWriteOnlyRepository, StockRepository>();
         services.AddScoped<IStockUpdateOnlyRepository, StockRepository>();
+
+        // Stock
+        services.AddScoped<IAppointmentReadOnlyRepository, AppointmentRepository>();
+        services.AddScoped<IAppointmentWriteOnlyRepository, AppointmentRepository>();
+        services.AddScoped<IAppointmentUpdateOnlyRepository, AppointmentRepository>();
 
         // Medicament
         services.AddScoped<IMedicamentReadOnlyRepository, MedicamentRepository>();

@@ -1,4 +1,5 @@
 ﻿using FluentMigrator;
+using System.Data;
 
 namespace GscareApiAspNetCore.Infrastructure.Migrations.Versions;
 
@@ -110,8 +111,8 @@ public class Version0000001 : Migration
             .WithColumn("Id").AsInt64().PrimaryKey().Identity()
             .WithColumn("Patient").AsString(255).NotNullable()
             .WithColumn("Employee").AsString(255).NotNullable()
-            .WithColumn("InicioService").AsString(255).NotNullable()
-            .WithColumn("FimService").AsString(255).NotNullable()
+            .WithColumn("InicioService").AsDateTime().NotNullable()
+            .WithColumn("FimService").AsDateTime().NotNullable()
             .WithColumn("Descricao").AsString(255).Nullable();
 
         // Supply Table
@@ -120,7 +121,7 @@ public class Version0000001 : Migration
             .WithColumn("Nome").AsString(255).NotNullable()
             .WithColumn("Comentario").AsString(255).NotNullable()
             .WithColumn("Quantidade").AsString(255).NotNullable()
-            .WithColumn("Data").AsString(255).NotNullable();
+            .WithColumn("Data").AsDateTime().NotNullable();
 
         // Stock Table
         Create.Table("Stocks")
@@ -140,9 +141,28 @@ public class Version0000001 : Migration
             .WithColumn("Id").AsInt64().PrimaryKey().Identity()
             .WithColumn("Titulo").AsString(255).NotNullable()
             .WithColumn("AvisoType").AsString(255).NotNullable()
-            .WithColumn("DataInicial").AsString(255).NotNullable()
-            .WithColumn("DataFinal").AsString(255).NotNullable()
+            .WithColumn("DataInicial").AsDateTime().NotNullable()
+            .WithColumn("DataFinal").AsDateTime().NotNullable()
             .WithColumn("Mensagem").AsString(255).NotNullable();
+
+        // Appointment Table
+        Create.Table("Appointments")
+            .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+            .WithColumn("StartTime").AsDateTime().NotNullable()
+            .WithColumn("EndTime").AsDateTime().NotNullable()
+            .WithColumn("Description").AsString(255).Nullable()
+            .WithColumn("EmployeeId").AsInt64().NotNullable()
+            .WithColumn("PatientId").AsInt64().NotNullable();
+
+        Create.ForeignKey("FK_Appointments_Employee")
+            .FromTable("Appointments").ForeignColumn("EmployeeId")
+            .ToTable("Employees").PrimaryColumn("Id")
+            .OnDelete(Rule.Cascade);
+
+        Create.ForeignKey("FK_Appointments_Patient")
+            .FromTable("Appointments").ForeignColumn("PatientId")
+            .ToTable("Patients").PrimaryColumn("Id")
+            .OnDelete(Rule.Cascade);
 
         // Foreign key relationship for CurrentCompanyId
         Create.ForeignKey("FK_Employees_CurrentCompany")
@@ -163,6 +183,9 @@ public class Version0000001 : Migration
         Delete.ForeignKey("FK_User_Patient").OnTable("Users");
         Delete.ForeignKey("FK_User_Company").OnTable("Users");
 
+        Delete.ForeignKey("FK_Appointments_Employee").OnTable("Appointments");
+        Delete.ForeignKey("FK_Appointments_Patient").OnTable("Appointments");
+
         Delete.Table("Warnings");
         Delete.Table("Users");
         Delete.Table("Supplies");
@@ -174,5 +197,6 @@ public class Version0000001 : Migration
         Delete.Table("DailyReports");
         Delete.Table("Companies");
         Delete.Table("Stocks");
+        Delete.Table("Appointments");
     }
 }

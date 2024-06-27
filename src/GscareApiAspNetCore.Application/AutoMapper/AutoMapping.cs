@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GscareApiAspNetCore.Communication.Requests;
+using GscareApiAspNetCore.Communication.Responses.AppointmentResponses;
 using GscareApiAspNetCore.Communication.Responses.CompanyResponses;
 using GscareApiAspNetCore.Communication.Responses.DailyReportRepository;
 using GscareApiAspNetCore.Communication.Responses.EmployeeResponses;
@@ -12,98 +13,110 @@ using GscareApiAspNetCore.Communication.Responses.UserResponses;
 using GscareApiAspNetCore.Communication.Responses.WarningResponses;
 using GscareApiAspNetCore.Domain.Entities;
 
-namespace GscareApiAspNetCore.Application.AutoMapper;
-public class AutoMapping : Profile
+namespace GscareApiAspNetCore.Application.AutoMapper
 {
-    public AutoMapping()
+    public class AutoMapping : Profile
     {
-        RequestToEntity();
-        EntityToResponse();
-    }
+        public AutoMapping()
+        {
+            RequestToEntity();
+            EntityToResponse();
+        }
 
-    private void RequestToEntity()
-    {
-        CreateMap<RequestUserJson, User>()
-            .ForMember(dest => dest.Employee, opt => opt.MapFrom(src => src.Employee))
-            .ForMember(dest => dest.Patient, opt => opt.MapFrom(src => src.Patient))
-            .ForMember(dest => dest.Company, opt => opt.MapFrom(src => src.Company));
+        private void RequestToEntity()
+        {
+            CreateMap<RequestUserJson, User>()
+                .ForMember(dest => dest.Employee, opt => opt.MapFrom(src => src.Employee))
+                .ForMember(dest => dest.Patient, opt => opt.MapFrom(src => src.Patient))
+                .ForMember(dest => dest.Company, opt => opt.MapFrom(src => src.Company));
 
-        CreateMap<RequestEmployeeJson, Employee>();
-        CreateMap<RequestPatientJson, Patient>();
-        CreateMap<RequestCompanyJson, Company>();
-        CreateMap<RequestWarningJson, Warning>();
-        CreateMap<RequestMedicamentJson, Medicament>();
-        CreateMap<RequestSupplyJson, Supply>();
-        CreateMap<RequestStockJson, Stock>();
-        CreateMap<RequestServiceJson, Service>();
-        CreateMap<RequestDailyReportJson, DailyReport>();
-    }
+            CreateMap<RequestAppointmentJson, Appointment>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+           
+            CreateMap<RequestEmployeeJson, Employee>();
+            CreateMap<RequestPatientJson, Patient>();
+            CreateMap<RequestCompanyJson, Company>();
+            CreateMap<RequestWarningJson, Warning>();
+            CreateMap<RequestMedicamentJson, Medicament>();
+            CreateMap<RequestSupplyJson, Supply>();
+            CreateMap<RequestStockJson, Stock>();
+            CreateMap<RequestServiceJson, Service>();
+            CreateMap<RequestDailyReportJson, DailyReport>();
+            CreateMap<RequestAppointmentJson, Appointment>();
+        }
 
-    private void EntityToResponse()
-    {
-        CreateMap<User, ResponseUserProfileJson>()
-            .ForMember(dest => dest.Employee, opt => opt.MapFrom(src => src.Employee))
-            .ForMember(dest => dest.Patient, opt => opt.MapFrom(src => src.Patient))
-            .ForMember(dest => dest.Company, opt => opt.MapFrom(src => src.Company));
+        private void EntityToResponse()
+        {
+            CreateMap<User, ResponseUserProfileJson>()
+                .ForMember(dest => dest.Employee, opt => opt.MapFrom(src => src.Employee))
+                .ForMember(dest => dest.Patient, opt => opt.MapFrom(src => src.Patient))
+                .ForMember(dest => dest.Company, opt => opt.MapFrom(src => src.Company));
 
-        CreateMap<Employee, ResponseEmployeeJson>()
-            .ForMember(dest => dest.CurrentCompanyId, opt => opt.MapFrom(src => src.CurrentCompany));
+            CreateMap<Employee, ResponseEmployeeJson>()
+                .ForMember(dest => dest.CurrentCompanyId, opt => opt.MapFrom(src => src.CurrentCompany));
 
-        CreateMap<Patient, ResponsePatientJson>()
-            .ForMember(dest => dest.CurrentCompanyId, opt => opt.MapFrom(src => src.CurrentCompany));
+            CreateMap<Patient, ResponsePatientJson>()
+                .ForMember(dest => dest.CurrentCompanyId, opt => opt.MapFrom(src => src.CurrentCompany));
 
-        CreateMap<Company, ResponseCompanyJson>();
+            CreateMap<Company, ResponseCompanyJson>();
 
-        //DailyReport
-        CreateMap<DailyReport, ResponseRegisteredDailyReportJson>();
-        CreateMap<DailyReport, ResponseShortDailyReportJson>();
-        CreateMap<DailyReport, ResponseDailyReportJson>();
+            CreateMap<Appointment, ResponseRegisteredAppointmentJson>();
+            CreateMap<Appointment, ResponseAppointmentJson>()
+                .ForMember(dest => dest.EmployeeName, opt => opt.MapFrom(src => src.Employee.NomeCompleto))
+                .ForMember(dest => dest.PatientName, opt => opt.MapFrom(src => src.Patient.NomeCompleto));
+            CreateMap<List<Appointment>, ResponseAppointmentsJson>()
+                .ForMember(dest => dest.Appointments, opt => opt.MapFrom(src => src));
 
-        //Service
-        CreateMap<Service, ResponseRegisteredServiceJson>();
-        CreateMap<Service, ResponseShortServiceJson>();
-        CreateMap<Service, ResponseServiceJson>();
+            // DailyReport
+            CreateMap<DailyReport, ResponseRegisteredDailyReportJson>();
+            CreateMap<DailyReport, ResponseShortDailyReportJson>();
+            CreateMap<DailyReport, ResponseDailyReportJson>();
 
-        //Supply 
-        CreateMap<Supply, ResponseRegisteredSupplyJson>();
-        CreateMap<Supply, ResponseShortSupplyJson>();
-        CreateMap<Supply, ResponseSupplyJson>();
+            // Service
+            CreateMap<Service, ResponseRegisteredServiceJson>();
+            CreateMap<Service, ResponseShortServiceJson>();
+            CreateMap<Service, ResponseServiceJson>();
 
-        //Stock  
-        CreateMap<Stock, ResponseRegisteredStockJson>();
-        CreateMap<Stock, ResponseShortStockJson>();
-        CreateMap<Stock, ResponseStockJson>();
+            // Supply 
+            CreateMap<Supply, ResponseRegisteredSupplyJson>();
+            CreateMap<Supply, ResponseShortSupplyJson>();
+            CreateMap<Supply, ResponseSupplyJson>();
 
-        //Medicament 
-        CreateMap<Medicament, ResponseRegisteredMedicamentJson>();
-        CreateMap<Medicament, ResponseShortMedicamentJson>();
-        CreateMap<Medicament, ResponseMedicamentJson>();
+            // Stock  
+            CreateMap<Stock, ResponseRegisteredStockJson>();
+            CreateMap<Stock, ResponseShortStockJson>();
+            CreateMap<Stock, ResponseStockJson>();
 
-        //Warning 
-        CreateMap<Warning, ResponseRegisteredWarningJson>();
-        CreateMap<Warning, ResponseShortWarningJson>();
-        CreateMap<Warning, ResponseWarningJson>();
+            // Medicament 
+            CreateMap<Medicament, ResponseRegisteredMedicamentJson>();
+            CreateMap<Medicament, ResponseShortMedicamentJson>();
+            CreateMap<Medicament, ResponseMedicamentJson>();
 
-        //Patient 
-        CreateMap<Company, ResponseRegisteredCompanyJson>();
-        CreateMap<Company, ResponseShortCompanyJson>();
-        CreateMap<Company, ResponseCompanyJson>();
+            // Warning 
+            CreateMap<Warning, ResponseRegisteredWarningJson>();
+            CreateMap<Warning, ResponseShortWarningJson>();
+            CreateMap<Warning, ResponseWarningJson>();
 
-        //Patient 
-        CreateMap<Patient, ResponseRegisteredPatientJson>();
-        CreateMap<Patient, ResponseShortPatientJson>();
-        CreateMap<Patient, ResponsePatientJson>();
+            // Company 
+            CreateMap<Company, ResponseRegisteredCompanyJson>();
+            CreateMap<Company, ResponseShortCompanyJson>();
+            CreateMap<Company, ResponseCompanyJson>();
 
-        //Employee
-        CreateMap<Employee, ResponseRegisteredEmployeeJson>();
-        CreateMap<Employee, ResponseShortEmployeeJson>();
-        CreateMap<Employee, ResponseEmployeeJson>();
+            // Patient 
+            CreateMap<Patient, ResponseRegisteredPatientJson>();
+            CreateMap<Patient, ResponseShortPatientJson>();
+            CreateMap<Patient, ResponsePatientJson>();
 
-        //User
-        CreateMap<User, ResponseRegisteredUserJson>();
-        CreateMap<User, ResponseShortUserJson>();
-        CreateMap<User, ResponseUserJson>();
-        CreateMap<User, ResponseUserProfileJson>();
+            // Employee
+            CreateMap<Employee, ResponseRegisteredEmployeeJson>();
+            CreateMap<Employee, ResponseShortEmployeeJson>();
+            CreateMap<Employee, ResponseEmployeeJson>();
 
+            // User
+            CreateMap<User, ResponseRegisteredUserJson>();
+            CreateMap<User, ResponseShortUserJson>();
+            CreateMap<User, ResponseUserJson>();
+            CreateMap<User, ResponseUserProfileJson>();
+        }
     }
 }

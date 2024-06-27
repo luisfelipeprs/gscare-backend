@@ -1,5 +1,4 @@
 ﻿using GscareApiAspNetCore.Api.Attributes;
-using GscareApiAspNetCore.Application.UseCases.EmployeeUseCases;
 using GscareApiAspNetCore.Application.UseCases.PatientUseCases;
 using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Communication.Responses;

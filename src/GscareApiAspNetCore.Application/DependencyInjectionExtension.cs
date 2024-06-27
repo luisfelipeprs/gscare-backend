@@ -1,4 +1,5 @@
 ﻿using GscareApiAspNetCore.Application.AutoMapper;
+using GscareApiAspNetCore.Application.UseCases.AppointmentUseCases;
 using GscareApiAspNetCore.Application.UseCases.CompanyUseCases;
 using GscareApiAspNetCore.Application.UseCases.DailyReportUseCases;
 using GscareApiAspNetCore.Application.UseCases.EmployeeUseCases;
@@ -55,6 +56,13 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetStockByIdUseCase, GetStockByIdUseCase>();
         services.AddScoped<IDeleteStockUseCase, DeleteStockUseCase>();
         services.AddScoped<IUpdateStockUseCase, UpdateStockUseCase>();
+
+        //Appointment
+        services.AddScoped<IRegisterAppointmentUseCase, RegisterAppointmentUseCase>();
+        services.AddScoped<IGetAllAppointmentsUseCase, GetAllAppointmentsUseCase>();
+        services.AddScoped<IGetAppointmentByIdUseCase, GetAppointmentByIdUseCase>();
+        services.AddScoped<IDeleteAppointmentUseCase, DeleteAppointmentUseCase>();
+        services.AddScoped<IUpdateAppointmentUseCase, UpdateAppointmentUseCase>();
 
         //Medicament
         services.AddScoped<IRegisterMedicamentUseCase, RegisterMedicamentUseCase>();

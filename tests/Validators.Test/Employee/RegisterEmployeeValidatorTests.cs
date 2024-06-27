@@ -1,6 +1,7 @@
 ﻿using CommonTestUtils.Requests;
 using FluentAssertions;
 using GscareApiAspNetCore.Application.UseCases;
+using GscareApiAspNetCore.Application.UseCases.EmployeeUseCases;
 using GscareApiAspNetCore.Communication.Enums;
 using GscareApiAspNetCore.Exception;
 

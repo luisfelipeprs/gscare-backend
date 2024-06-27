@@ -21,4 +21,8 @@ public class Employee
     public long? CurrentCompanyId { get; set; }
     public Company? CurrentCompany { get; set; }
     public User? User { get; set; }
+
+    // Adicionar esta propriedade
+    public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
+
 }
