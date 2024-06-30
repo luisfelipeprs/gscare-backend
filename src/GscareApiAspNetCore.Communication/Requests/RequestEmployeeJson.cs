@@ -1,4 +1,5 @@
 ﻿using GscareApiAspNetCore.Communication.Enums;
+using Microsoft.AspNetCore.Http;
 
 namespace GscareApiAspNetCore.Communication.Requests;
 public class RequestEmployeeJson
@@ -13,7 +14,7 @@ public class RequestEmployeeJson
     public string FotoIdentidade { get; set; } = string.Empty;
     public string FotoCpf { get; set; } = string.Empty;
     public string FotoComprovanteResidencia { get; set; } = string.Empty;
-    public string CertificadoDoCurso { get; set; } = string.Empty;
-    public string Mei { get; set; } = string.Empty;
-    public string NadaConsta { get; set; } = string.Empty;
+    public string FotoCertificadoDoCurso { get; set; } = string.Empty;
+    public string FotoMei { get; set; } = string.Empty;
+    public string FotoNadaConsta { get; set; } = string.Empty;
 }

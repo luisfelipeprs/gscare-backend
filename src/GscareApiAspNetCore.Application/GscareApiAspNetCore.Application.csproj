@@ -10,12 +10,13 @@
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentValidation" Version="11.9.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
-
+	
   <ItemGroup>
     <ProjectReference Include="..\GscareApiAspNetCore.Communication\GscareApiAspNetCore.Communication.csproj" />
     <ProjectReference Include="..\GscareApiAspNetCore.Domain\GscareApiAspNetCore.Domain.csproj" />
     <ProjectReference Include="..\GscareApiAspNetCore.Exception\GscareApiAspNetCore.Exception.csproj" />
   </ItemGroup>
-
+	
 </Project>

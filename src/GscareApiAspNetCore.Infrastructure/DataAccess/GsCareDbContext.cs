@@ -18,6 +18,8 @@ namespace GscareApiAspNetCore.Infrastructure.DataAccess
         public DbSet<DailyReport> DailyReports { get; set; }
         public DbSet<Stock> Stocks { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Document> Documents { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

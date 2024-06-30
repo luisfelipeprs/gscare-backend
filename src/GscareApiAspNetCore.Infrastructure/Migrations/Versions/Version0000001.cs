@@ -28,9 +28,9 @@ public class Version0000001 : Migration
             .WithColumn("FotoIdentidade").AsString(255).Nullable()
             .WithColumn("FotoCpf").AsString(255).Nullable()
             .WithColumn("FotoComprovanteResidencia").AsString(255).Nullable()
-            .WithColumn("CertificadoDoCurso").AsString(255).Nullable()
-            .WithColumn("Mei").AsString(255).Nullable()
-            .WithColumn("NadaConsta").AsString(255).Nullable()
+            .WithColumn("FotoCertificadoDoCurso").AsString(255).Nullable()
+            .WithColumn("FotoMei").AsString(255).Nullable()
+            .WithColumn("FotoNadaConsta").AsString(255).Nullable()
             .WithColumn("CurrentCompanyId").AsInt64().Nullable();
 
         // Patient Table

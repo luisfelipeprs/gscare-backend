@@ -1,7 +1,9 @@
 ﻿using GscareApiAspNetCore.Application.AutoMapper;
+using GscareApiAspNetCore.Application.UseCases;
 using GscareApiAspNetCore.Application.UseCases.AppointmentUseCases;
 using GscareApiAspNetCore.Application.UseCases.CompanyUseCases;
 using GscareApiAspNetCore.Application.UseCases.DailyReportUseCases;
+using GscareApiAspNetCore.Application.UseCases.DocumentUseCases;
 using GscareApiAspNetCore.Application.UseCases.EmployeeUseCases;
 using GscareApiAspNetCore.Application.UseCases.MedicamentUseCases;
 using GscareApiAspNetCore.Application.UseCases.PatientUseCases;
@@ -10,6 +12,7 @@ using GscareApiAspNetCore.Application.UseCases.StockUseCases;
 using GscareApiAspNetCore.Application.UseCases.SupplyUseCases;
 using GscareApiAspNetCore.Application.UseCases.UserUseCases;
 using GscareApiAspNetCore.Application.UseCases.WarningUseCases;
+using GscareApiAspNetCore.Domain.Repositories.DocumentRepositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GscareApiAspNetCore.Application;
@@ -28,6 +31,10 @@ public static class DependencyInjectionExtension
 
     private static void AddUseCases(IServiceCollection services)
     {
+
+        //Document
+        services.AddScoped<IUploadDocumentUseCase, UploadDocumentUseCase>();
+        services.AddScoped<IGetDocumentUseCase, GetDocumentUseCase>();
 
         //DailyReports
         services.AddScoped<IRegisterDailyReportUseCase, RegisterDailyReportUseCase>();
