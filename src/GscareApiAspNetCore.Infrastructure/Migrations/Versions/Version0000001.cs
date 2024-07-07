@@ -120,7 +120,7 @@ public class Version0000001 : Migration
             .WithColumn("Id").AsInt64().PrimaryKey().Identity()
             .WithColumn("Nome").AsString(255).NotNullable()
             .WithColumn("Comentario").AsString(255).NotNullable()
-            .WithColumn("Quantidade").AsString(255).NotNullable()
+            .WithColumn("Quantidade").AsInt32().NotNullable()
             .WithColumn("Data").AsDateTime().NotNullable();
 
         // Stock Table
