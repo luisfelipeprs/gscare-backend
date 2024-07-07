@@ -102,7 +102,7 @@ public class Version0000001 : Migration
             .WithColumn("Id").AsInt32().PrimaryKey().Identity()
             .WithColumn("Name").AsString(255).NotNullable()
             .WithColumn("Type").AsString(255).NotNullable()
-            .WithColumn("Amount").AsString(255).NotNullable()
+            .WithColumn("Amount").AsInt32().NotNullable()
             .WithColumn("Hours").AsString(255).NotNullable()
             .WithColumn("Frequency").AsString(255).NotNullable();
 
