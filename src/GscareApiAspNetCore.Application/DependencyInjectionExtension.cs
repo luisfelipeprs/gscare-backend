@@ -7,7 +7,6 @@ using GscareApiAspNetCore.Application.UseCases.DocumentUseCases;
 using GscareApiAspNetCore.Application.UseCases.EmployeeUseCases;
 using GscareApiAspNetCore.Application.UseCases.MedicamentUseCases;
 using GscareApiAspNetCore.Application.UseCases.PatientUseCases;
-using GscareApiAspNetCore.Application.UseCases.ServiceUseCases;
 using GscareApiAspNetCore.Application.UseCases.StockUseCases;
 using GscareApiAspNetCore.Application.UseCases.SupplyUseCases;
 using GscareApiAspNetCore.Application.UseCases.UserUseCases;
@@ -42,13 +41,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetDailyReportByIdUseCase, GetDailyReportByIdUseCase>();
         services.AddScoped<IDeleteDailyReportUseCase, DeleteDailyReportUseCase>();
         services.AddScoped<IUpdateDailyReportUseCase, UpdateDailyReportUseCase>();
-
-        //Service
-        services.AddScoped<IRegisterServiceUseCase, RegisterServiceUseCase>();
-        services.AddScoped<IGetAllServicesUseCase, GetAllServicesUseCase>();
-        services.AddScoped<IGetServiceByIdUseCase, GetServiceByIdUseCase>();
-        services.AddScoped<IDeleteServiceUseCase, DeleteServiceUseCase>();
-        services.AddScoped<IUpdateServiceUseCase, UpdateServiceUseCase>();
 
         //Supply
         services.AddScoped<IRegisterSupplyUseCase, RegisterSupplyUseCase>();

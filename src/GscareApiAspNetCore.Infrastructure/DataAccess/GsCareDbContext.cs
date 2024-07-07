@@ -14,7 +14,6 @@ namespace GscareApiAspNetCore.Infrastructure.DataAccess
         public DbSet<Warning> Warnings { get; set; }
         public DbSet<Medicament> Medicaments { get; set; }
         public DbSet<Supply> Supplies { get; set; }
-        public DbSet<Service> Services { get; set; }
         public DbSet<DailyReport> DailyReports { get; set; }
         public DbSet<Stock> Stocks { get; set; }
         public DbSet<Appointment> Appointments { get; set; }

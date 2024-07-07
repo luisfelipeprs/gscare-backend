@@ -7,7 +7,6 @@ using GscareApiAspNetCore.Domain.Repositories.DocumentRepositories;
 using GscareApiAspNetCore.Domain.Repositories.EmployeeRepositories;
 using GscareApiAspNetCore.Domain.Repositories.MedicamentRepositories;
 using GscareApiAspNetCore.Domain.Repositories.PatientRepositories;
-using GscareApiAspNetCore.Domain.Repositories.ServiceRepositories;
 using GscareApiAspNetCore.Domain.Repositories.StockRepositories;
 using GscareApiAspNetCore.Domain.Repositories.SupplyRepositories;
 using GscareApiAspNetCore.Domain.Repositories.UserRepositories;
@@ -50,11 +49,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IDailyReportReadOnlyRepository, DailyReportRepository>();
         services.AddScoped<IDailyReportWriteOnlyRepository, DailyReportRepository>();
         services.AddScoped<IDailyReportUpdateOnlyRepository, DailyReportRepository>();
-
-        // Service
-        services.AddScoped<IServiceReadOnlyRepository, ServiceRepository>();
-        services.AddScoped<IServiceWriteOnlyRepository, ServiceRepository>();
-        services.AddScoped<IServiceUpdateOnlyRepository, ServiceRepository>();
 
         // Supply
         services.AddScoped<ISupplyReadOnlyRepository, SupplyRepository>();

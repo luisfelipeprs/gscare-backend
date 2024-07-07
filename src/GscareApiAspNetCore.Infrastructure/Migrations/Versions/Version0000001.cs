@@ -106,15 +106,6 @@ public class Version0000001 : Migration
             .WithColumn("Hours").AsString(255).NotNullable()
             .WithColumn("Frequency").AsString(255).NotNullable();
 
-        // Service Table
-        Create.Table("Services")
-            .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-            .WithColumn("Patient").AsString(255).NotNullable()
-            .WithColumn("Employee").AsString(255).NotNullable()
-            .WithColumn("InicioService").AsDateTime().NotNullable()
-            .WithColumn("FimService").AsDateTime().NotNullable()
-            .WithColumn("Descricao").AsString(255).Nullable();
-
         // Supply Table
         Create.Table("Supplies")
             .WithColumn("Id").AsInt64().PrimaryKey().Identity()
