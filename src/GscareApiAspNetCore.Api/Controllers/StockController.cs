@@ -27,9 +27,11 @@ public class StockController : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(ResponseStocksJson), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetAllStocks([FromServices] IGetAllStocksUseCase useCase)
+    public async Task<IActionResult> GetAllStocks(
+        [FromServices] IGetAllStocksUseCase useCase,
+        [FromQuery] long companyId)
     {
-        var response = await useCase.Execute();
+        var response = await useCase.Execute(companyId);
 
         if (response.Stocks.Count != 0)
         {

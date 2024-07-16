@@ -14,9 +14,9 @@ public class GetAllMedicamentsUseCase : IGetAllMedicamentsUseCase
         _mapper = mapper;
     }
 
-    public async Task<ResponseMedicamentsJson> Execute()
+    public async Task<ResponseMedicamentsJson> Execute(long patientId)
     {
-        var result = await _repository.GetAll();
+        var result = await _repository.GetAll(patientId);
 
         return new ResponseMedicamentsJson
         {

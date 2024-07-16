@@ -3,5 +3,5 @@
 namespace GscareApiAspNetCore.Application.UseCases.DailyReportUseCases;
 public interface IGetAllDailyReportsUseCase
 {
-    Task<ResponseDailyReportsJson> Execute();
+    Task<ResponseDailyReportsJson> Execute(long appointmentId);
 }

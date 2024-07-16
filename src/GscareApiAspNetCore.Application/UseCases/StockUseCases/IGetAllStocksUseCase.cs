@@ -3,5 +3,5 @@
 namespace GscareApiAspNetCore.Application.UseCases.StockUseCases;
 public interface IGetAllStocksUseCase
 {
-    Task<ResponseStocksJson> Execute();
+    Task<ResponseStocksJson> Execute(long companyId);
 }

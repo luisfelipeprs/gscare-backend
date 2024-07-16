@@ -14,9 +14,9 @@ public class GetAllStocksUseCase : IGetAllStocksUseCase
         _mapper = mapper;
     }
 
-    public async Task<ResponseStocksJson> Execute()
+    public async Task<ResponseStocksJson> Execute(long companyId)
     {
-        var result = await _repository.GetAll();
+        var result = await _repository.GetAll(companyId);
 
         return new ResponseStocksJson
         {

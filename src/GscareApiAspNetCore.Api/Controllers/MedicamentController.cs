@@ -25,9 +25,11 @@ public class MedicamentController : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(ResponseMedicamentsJson), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetAllMedicaments([FromServices] IGetAllMedicamentsUseCase useCase)
+    public async Task<IActionResult> GetAllMedicaments(
+        [FromServices] IGetAllMedicamentsUseCase useCase,
+        [FromQuery] long patientId)
     {
-        var response = await useCase.Execute();
+        var response = await useCase.Execute(patientId);
 
         if (response.Medicament.Count != 0)
         {

@@ -27,10 +27,22 @@ public class RegisterMedicamentUseCase : IRegisterMedicamentUseCase
         Validate(request);
 
         var entity = _mapper.Map<Medicament>(request);
+        entity.PatientId = request.PatientId;
 
         await _repository.Add(entity);
 
         await _unitOfWork.Commit();
+
+        //try
+        //{
+        //    await _repository.Add(entity);
+        //    await _unitOfWork.Commit();
+        //}
+        //catch (GscareException ex)
+        //{
+        //    // Log the exception or handle it accordingly
+        //    throw new System.Exception("An error occurred while saving the entity changes. See the inner exception for details.", ex);
+        //}
 
         return _mapper.Map<ResponseRegisteredMedicamentJson>(entity);
 

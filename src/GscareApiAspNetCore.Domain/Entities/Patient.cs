@@ -17,7 +17,11 @@ public class Patient
     public long? CurrentCompanyId { get; set; }
     public Company? CurrentCompany { get; set; }
     public User? User { get; set; }
+
     // Adicionar esta propriedade
+    public ICollection<Supply> Supplies { get; set; } = new List<Supply>();
     public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
+    public ICollection<Medicament> Medicaments { get; set; } = new List<Medicament>();
+
 
 }

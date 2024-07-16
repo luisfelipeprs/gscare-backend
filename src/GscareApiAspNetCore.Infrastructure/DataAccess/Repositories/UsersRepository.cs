@@ -28,6 +28,7 @@ internal class UsersRepository : IUserReadOnlyRepository, IUserWriteOnlyReposito
             .Include(u => u.Employee)
             .Include(u => u.Patient)
             .Include(u => u.Company)
+            .AsNoTracking()
             .FirstOrDefaultAsync(u => u.Id == id);
 
         if (user == null)
@@ -80,6 +81,7 @@ internal class UsersRepository : IUserReadOnlyRepository, IUserWriteOnlyReposito
 
         return user;
     }
+
 
     public async Task<User?> GetByEmail(string email)
     {

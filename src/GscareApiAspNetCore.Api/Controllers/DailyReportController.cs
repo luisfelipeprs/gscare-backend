@@ -24,9 +24,11 @@ public class DailyReportController : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(ResponseDailyReportsJson), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetAllDailyReports([FromServices] IGetAllDailyReportsUseCase useCase)
+    public async Task<IActionResult> GetAllDailyReports(
+        [FromServices] IGetAllDailyReportsUseCase useCase,
+        [FromQuery] long appointmentId)
     {
-        var response = await useCase.Execute();
+        var response = await useCase.Execute(appointmentId);
 
         if (response.DailyReport.Count != 0)
         {

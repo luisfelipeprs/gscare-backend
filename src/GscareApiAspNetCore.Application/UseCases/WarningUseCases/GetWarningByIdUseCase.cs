@@ -1,30 +1,48 @@
 ﻿using AutoMapper;
-using GscareApiAspNetCore.Communication.Responses;
-using GscareApiAspNetCore.Exception.ExceptionBase;
-using GscareApiAspNetCore.Exception;
 using GscareApiAspNetCore.Communication.Responses.WarningResponses;
+using GscareApiAspNetCore.Domain.Enums;
 using GscareApiAspNetCore.Domain.Repositories.WarningRepositories;
+using GscareApiAspNetCore.Domain.Services.LoggedUser;
+using GscareApiAspNetCore.Exception;
+using GscareApiAspNetCore.Exception.ExceptionBase;
+using System.Threading.Tasks;
 
-namespace GscareApiAspNetCore.Application.UseCases.WarningUseCases;
-public class GetWarningByIdUseCase : IGetWarningByIdUseCase
+namespace GscareApiAspNetCore.Application.UseCases.WarningUseCases
 {
-    private readonly IWarningReadOnlyRepository _repository;
-    private readonly IMapper _mapper;
-    public GetWarningByIdUseCase(IWarningReadOnlyRepository repository, IMapper mapper)
+    public class GetWarningByIdUseCase : IGetWarningByIdUseCase
     {
-        _repository = repository;
-        _mapper = mapper;
-    }
+        private readonly IWarningReadOnlyRepository _repository;
+        private readonly IMapper _mapper;
+        private readonly ILoggedUser _loggedUser;
 
-    public async Task<ResponseWarningJson> Execute(long id)
-    {
-        var result = await _repository.GetById(id);
-
-        if (result is null)
+        public GetWarningByIdUseCase(IWarningReadOnlyRepository repository, IMapper mapper, ILoggedUser loggedUser)
         {
-            throw new NotFoundException(ResourceErrorMessages.EMPLOYEE_NOT_FOUND);
+            _repository = repository;
+            _mapper = mapper;
+            _loggedUser = loggedUser;
         }
 
-        return _mapper.Map<ResponseWarningJson>(result);
+        public async Task<ResponseWarningJson> Execute(long id)
+        {
+            var loggedInUser = await _loggedUser.User();
+            if (loggedInUser.UserType != RolesUserType.Company)
+            {
+                throw new UnauthorizedAccessException("Apenas empresas podem fazer essa operação");
+            }
+
+            var result = await _repository.GetById(id);
+
+            if (result is null)
+            {
+                throw new NotFoundException("Warning não encontrada");
+            }
+
+            if (loggedInUser.CompanyId != result.CompanyId)
+            {
+                throw new UnauthorizedAccessException("Você só pode operar avisos feitos pela sua empresa");
+            }
+
+            return _mapper.Map<ResponseWarningJson>(result);
+        }
     }
 }

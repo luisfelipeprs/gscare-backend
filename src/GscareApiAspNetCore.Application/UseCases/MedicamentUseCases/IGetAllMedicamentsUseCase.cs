@@ -3,5 +3,5 @@
 namespace GscareApiAspNetCore.Application.UseCases.MedicamentUseCases;
 public interface IGetAllMedicamentsUseCase
 {
-    Task<ResponseMedicamentsJson> Execute();
+    Task<ResponseMedicamentsJson> Execute(long patientId);
 }

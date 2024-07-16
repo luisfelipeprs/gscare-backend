@@ -1,6 +1,7 @@
 ﻿using GscareApiAspNetCore.Domain.Entities;
 using GscareApiAspNetCore.Domain.Repositories.WarningRepositories;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.Design;
 
 namespace GscareApiAspNetCore.Infrastructure.DataAccess.Repositories;
 internal class WarningsRepository : IWarningReadOnlyRepository, IWarningUpdateOnlyRepository, IWarningWriteOnlyRepository
@@ -12,9 +13,9 @@ internal class WarningsRepository : IWarningReadOnlyRepository, IWarningUpdateOn
         _dbContext = dbContext;
     }
 
-    public async Task Add(Warning Warning)
+    public async Task Add(Warning warning)
     {
-        await _dbContext.Warnings.AddAsync(Warning);
+        await _dbContext.Warnings.AddAsync(warning);
     }
 
     public async Task<bool> Delete(long id)
@@ -31,11 +32,14 @@ internal class WarningsRepository : IWarningReadOnlyRepository, IWarningUpdateOn
         return true;
     }
 
-    public async Task<List<Warning>> GetAll()
+    public async Task<List<Warning>> GetAll(long companyId)
     {
-        return await _dbContext.Warnings.AsNoTracking().ToListAsync();
-        //await _dbContext.Warnings.Where(e => e.UserId == id)
+        return await _dbContext.Warnings
+            .Where(warning => warning.CompanyId == companyId)
+            .AsNoTracking()
+            .ToListAsync();
     }
+    
 
     async Task<Warning?> IWarningReadOnlyRepository.GetById(long id)
     {
@@ -52,3 +56,4 @@ internal class WarningsRepository : IWarningReadOnlyRepository, IWarningUpdateOn
         _dbContext.Warnings.Update(Warning);
     }
 }
+

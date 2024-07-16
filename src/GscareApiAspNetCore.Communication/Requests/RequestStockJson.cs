@@ -10,4 +10,5 @@ public class RequestStockJson
     public string Fornecedor { get; set; } = string.Empty;
     public decimal Preco_Unitario { get; set; }
     public string Unidade_Medida { get; set; } = string.Empty;
+    public long CompanyId { get; set; }
 }

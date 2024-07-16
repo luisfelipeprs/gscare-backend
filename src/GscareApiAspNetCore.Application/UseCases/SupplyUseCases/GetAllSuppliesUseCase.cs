@@ -16,9 +16,9 @@ public class GetAllSuppliesUseCase : IGetAllSuppliesUseCase
         _mapper = mapper;
     }
 
-    public async Task<ResponseSuppliesJson> Execute()
+    public async Task<ResponseSuppliesJson> Execute(long patientId)
     {
-        var result = await _repository.GetAll();
+        var result = await _repository.GetAll(patientId);
 
         return new ResponseSuppliesJson
         {

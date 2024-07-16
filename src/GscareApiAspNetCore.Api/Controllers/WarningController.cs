@@ -1,4 +1,5 @@
-﻿using GscareApiAspNetCore.Application.UseCases;
+﻿using GscareApiAspNetCore.Api.Attributes;
+using GscareApiAspNetCore.Application.UseCases;
 using GscareApiAspNetCore.Application.UseCases.WarningUseCases;
 using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Communication.Responses;
@@ -11,6 +12,7 @@ namespace GscareApiAspNetCore.Api.Controllers;
 public class WarningController : ControllerBase
 {
     [HttpPost]
+    [AuthenticatedUser]
     [ProducesResponseType(typeof(ResponseRegisteredWarningJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Register(
@@ -23,6 +25,7 @@ public class WarningController : ControllerBase
     }
 
     [HttpGet]
+    [AuthenticatedUser]
     [ProducesResponseType(typeof(ResponseWarningsJson), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetAllWarnings([FromServices] IGetAllWarningsUseCase useCase)
@@ -38,6 +41,7 @@ public class WarningController : ControllerBase
     }
 
     [HttpGet]
+    [AuthenticatedUser]
     [Route("{id}")]
     [ProducesResponseType(typeof(ResponseWarningJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
@@ -51,6 +55,7 @@ public class WarningController : ControllerBase
     }
 
     [HttpDelete]
+    [AuthenticatedUser]
     [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
@@ -64,6 +69,7 @@ public class WarningController : ControllerBase
     }
 
     [HttpPut]
+    [AuthenticatedUser]
     [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]

@@ -4,5 +4,5 @@ using GscareApiAspNetCore.Communication.Responses.WarningResponses;
 namespace GscareApiAspNetCore.Application.UseCases.SupplyUseCases;
 public interface IGetAllSuppliesUseCase
 {
-    Task<ResponseSuppliesJson> Execute();
+    Task<ResponseSuppliesJson> Execute(long patientId);
 }

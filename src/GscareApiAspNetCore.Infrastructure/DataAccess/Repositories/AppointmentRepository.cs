@@ -23,7 +23,8 @@ namespace GscareApiAspNetCore.Infrastructure.DataAccess.Repositories
             return await _dbContext.Appointments
                 .Include(a => a.Employee)
                 .Include(a => a.Patient)
-                .ToListAsync();
+                .Include(a => a.Company) // Include company
+                .ToListAsync();            
         }
 
         async Task<Appointment?> IAppointmentReadOnlyRepository.GetById(long id)
@@ -31,6 +32,7 @@ namespace GscareApiAspNetCore.Infrastructure.DataAccess.Repositories
             return await _dbContext.Appointments
                 .Include(a => a.Employee)
                 .Include(a => a.Patient)
+                .Include(a => a.Company) // Include company
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
 

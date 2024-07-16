@@ -31,9 +31,14 @@ internal class DailyReportRepository : IDailyReportReadOnlyRepository, IDailyRep
         return true;
     }
 
-    public async Task<List<DailyReport>> GetAll()
+    public async Task<List<DailyReport>> GetAll(long appointmentId)
     {
-        return await _dbContext.DailyReports.AsNoTracking().ToListAsync();
+        return await _dbContext.DailyReports
+            .AsNoTracking()
+            .Where(dr => dr.AppointmentId == appointmentId)
+            .ToListAsync();
+
+        //return await _dbContext.DailyReports.AsNoTracking().ToListAsync();
         //await _dbContext.DailyReports.Where(e => e.UserId == id)
     }
 

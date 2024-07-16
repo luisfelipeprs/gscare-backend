@@ -1,6 +1,7 @@
 ﻿using GscareApiAspNetCore.Domain.Entities;
 using GscareApiAspNetCore.Domain.Repositories.StockRepositories;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.Design;
 
 namespace GscareApiAspNetCore.Infrastructure.DataAccess.Repositories
 {
@@ -32,9 +33,15 @@ namespace GscareApiAspNetCore.Infrastructure.DataAccess.Repositories
             return true;
         }
 
-        public async Task<List<Stock>> GetAll()
+        public async Task<List<Stock>> GetAll(long companyId)
         {
-            return await _dbContext.Stocks.AsNoTracking().ToListAsync();
+            return await _dbContext.Stocks
+            .Where(stocks => stocks.CompanyId == companyId)
+            .AsNoTracking()
+            .ToListAsync();
+            //return await _dbContext.Stocks.Include(s => s.Company).AsNoTracking().ToListAsync();
+
+            //return await _dbContext.Stocks.AsNoTracking().ToListAsync();
         }
 
         async Task<Stock?> IStockReadOnlyRepository.GetById(long id)

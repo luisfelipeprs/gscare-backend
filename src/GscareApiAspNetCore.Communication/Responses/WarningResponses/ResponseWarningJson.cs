@@ -6,4 +6,7 @@ public class ResponseWarningJson
     public DateTime DataInicial { get; set; }
     public DateTime DataFinal { get; set; }
     public string Mensagem { get; set; } = string.Empty;
+    public string CompanyName { get; set; } = string.Empty;
+    public long CompanyId { get; set; }
 }
+

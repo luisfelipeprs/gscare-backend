@@ -25,9 +25,11 @@ public class SupplyController : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(ResponseSuppliesJson), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetAllSupplies([FromServices] IGetAllSuppliesUseCase useCase)
+    public async Task<IActionResult> GetAllSupplies(
+        [FromServices] IGetAllSuppliesUseCase useCase,
+        [FromQuery] long patientId)
     {
-        var response = await useCase.Execute();
+        var response = await useCase.Execute(patientId);
 
         if (response.Supply.Count != 0)
         {

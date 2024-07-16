@@ -25,6 +25,7 @@ public class RegisterStockUseCase : IRegisterStockUseCase
         Validate(request);
 
         var entity = _mapper.Map<Stock>(request);
+        entity.CompanyId = request.CompanyId;
 
         await _repository.Add(entity);
 

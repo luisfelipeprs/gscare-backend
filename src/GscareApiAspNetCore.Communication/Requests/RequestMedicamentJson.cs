@@ -11,4 +11,5 @@ public class RequestMedicamentJson
     public string Hours { get; set; } = "00:00:00";
 
     public string Frequency { get; set; } = string.Empty;
+    public long PatientId { get; set; }
 }

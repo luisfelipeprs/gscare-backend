@@ -7,4 +7,6 @@ public class Medicament
     public int Amount { get; set; }
     public string Hours { get; set; } = string.Empty;
     public string Frequency { get; set; } = string.Empty;
+    public long PatientId { get; set; } // Adicionar esta propriedade
+    public Patient Patient { get; set; } = null!; // Adicionar esta propriedade
 }

@@ -22,6 +22,7 @@ namespace GscareApiAspNetCore.Infrastructure.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Employee)
                 .WithOne(e => e.User)
@@ -63,6 +64,46 @@ namespace GscareApiAspNetCore.Infrastructure.DataAccess
                 .WithMany(p => p.Appointments)
                 .HasForeignKey(a => a.PatientId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Appointment>()
+                .HasOne(a => a.Company)
+                .WithMany(c => c.Appointments)
+                .HasForeignKey(a => a.CompanyId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Warning>()
+                .HasOne(w => w.Company)
+                .WithMany(c => c.Warnings)
+                .HasForeignKey(w => w.CompanyId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Supply>()
+                .HasOne(s => s.Patient)
+                .WithMany(p => p.Supplies)
+                .HasForeignKey(s => s.PatientId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Configuração para relacionar Medicaments e Patients
+            modelBuilder.Entity<Medicament>()
+                .HasOne(m => m.Patient)
+                .WithMany(p => p.Medicaments)
+                .HasForeignKey(m => m.PatientId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Stock>()
+                .HasOne(s => s.Company)
+                .WithMany(c => c.Stocks)
+                .HasForeignKey(s => s.CompanyId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<DailyReport>()
+                .HasOne(dr => dr.Appointment)
+                .WithMany(a => a.DailyReports)
+                .HasForeignKey(dr => dr.AppointmentId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

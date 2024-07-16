@@ -28,6 +28,7 @@ public class RegisterSupplyUseCase : IRegisterSupplyUseCase
         Validate(request);
 
         var entity = _mapper.Map<Supply>(request);
+        entity.PatientId = request.PatientId; // Definir o ID do paciente na entidade Supply
 
         await _repository.Add(entity);
 

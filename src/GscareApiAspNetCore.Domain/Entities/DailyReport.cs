@@ -14,4 +14,8 @@ public class DailyReport
     public bool Question4 { get; set; }
     public bool Question5 { get; set; }
 
+    // Relacionamento com Appointment
+    public long AppointmentId { get; set; }
+    public required Appointment Appointment { get; set; }
+
 }

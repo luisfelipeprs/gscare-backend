@@ -32,9 +32,13 @@ internal class MedicamentRepository : IMedicamentReadOnlyRepository, IMedicament
         return true;
     }
 
-    public async Task<List<Medicament>> GetAll()
+    public async Task<List<Medicament>> GetAll(long patientId)
     {
-        return await _dbContext.Medicaments.AsNoTracking().ToListAsync();
+        return await _dbContext.Medicaments
+            .AsNoTracking()
+            .Where(m => m.PatientId == patientId)
+            .ToListAsync();
+        //return await _dbContext.Medicaments.AsNoTracking().ToListAsync();
         //await _dbContext.Medicaments.Where(e => e.UserId == id)
     }
 

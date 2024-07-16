@@ -31,9 +31,14 @@ internal class SupplyRepository : ISupplyReadOnlyRepository, ISupplyUpdateOnlyRe
         return true;
     }
 
-    public async Task<List<Supply>> GetAll()
+    public async Task<List<Supply>> GetAll(long patientId)
     {
-        return await _dbContext.Supplies.AsNoTracking().ToListAsync();
+        return await _dbContext.Supplies
+            .Where(s => s.PatientId == patientId)
+            .AsNoTracking()
+            .ToListAsync();
+
+        //return await _dbContext.Supplies.AsNoTracking().ToListAsync();
         //await _dbContext.Supplies.Where(e => e.UserId == id)
     }
 

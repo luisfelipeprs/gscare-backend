@@ -26,6 +26,7 @@ public class RegisterDailyReportUseCase : IRegisterDailyReportUseCase
         Validate(request);
 
         var entity = _mapper.Map<DailyReport>(request);
+        entity.AppointmentId = request.AppointmentId;
 
         await _repository.Add(entity);
 

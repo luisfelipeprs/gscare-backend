@@ -14,9 +14,9 @@ public class GetAllDailyReportsUseCase : IGetAllDailyReportsUseCase
         _mapper = mapper;
     }
 
-    public async Task<ResponseDailyReportsJson> Execute()
+    public async Task<ResponseDailyReportsJson> Execute(long appointmentId)
     {
-        var result = await _repository.GetAll();
+        var result = await _repository.GetAll(appointmentId);
 
         return new ResponseDailyReportsJson
         {

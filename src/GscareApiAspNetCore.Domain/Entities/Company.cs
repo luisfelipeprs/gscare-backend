@@ -12,4 +12,9 @@ public class Company
     public User? User { get; set; }
     public ICollection<Employee> Employees { get; set; } = new List<Employee>();
     public ICollection<Patient> Patients { get; set; } = new List<Patient>();
+    public ICollection<Warning> Warnings { get; set; } = new List<Warning>();
+    public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
+    public ICollection<Stock> Stocks { get; set; } = new List<Stock>();
+
+
 }

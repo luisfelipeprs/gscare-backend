@@ -6,4 +6,5 @@ public class ResponseShortWarningJson
     public string AvisoType { get; set; } = string.Empty;
     public DateTime DataInicial { get; set; }
     public DateTime DataFinal { get; set; }
+    public long CompanyId { get; set; }
 }
