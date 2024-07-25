@@ -23,4 +23,7 @@ public class User
     public Employee? Employee { get; set; }
     public Patient? Patient { get; set; }
     public Company? Company { get; set; }
+
+    // Relationship with Document
+    public ICollection<Document> Documents { get; set; } = new List<Document>();
 }

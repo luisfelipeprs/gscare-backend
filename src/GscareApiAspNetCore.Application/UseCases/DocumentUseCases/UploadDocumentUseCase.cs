@@ -1,41 +1,50 @@
 ﻿using GscareApiAspNetCore.Communication.Requests;
 using GscareApiAspNetCore.Domain.Entities;
 using GscareApiAspNetCore.Domain.Repositories.DocumentRepositories;
-using GscareApiAspNetCore.Domain.Repositories.EmployeeRepositories;
+using GscareApiAspNetCore.Domain.Repositories.UserRepositories;
 using GscareApiAspNetCore.Exception.ExceptionBase;
-using GscareApiAspNetCore.Exception;
 using Microsoft.AspNetCore.Hosting;
 using AutoMapper;
-using GscareApiAspNetCore.Domain.Repositories;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using GscareApiAspNetCore.Domain.Services.LoggedUser;
 
 namespace GscareApiAspNetCore.Application.UseCases.DocumentUseCases
 {
     public class UploadDocumentUseCase : IUploadDocumentUseCase
     {
         private readonly IMapper _mapper;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IDocumentRepository _repository;
+        private readonly IUserReadOnlyRepository _userRepository;
         private readonly IWebHostEnvironment _environment;
+        private readonly ILoggedUser _loggedUser;
 
         public UploadDocumentUseCase(
             IWebHostEnvironment environment,
             IDocumentRepository repository,
+            IUserReadOnlyRepository userRepository,
             IMapper mapper,
-            IUnitOfWork unitOfWork)
+            ILoggedUser loggedUser)
         {
             _environment = environment;
             _repository = repository;
+            _userRepository = userRepository;
             _mapper = mapper;
-            _unitOfWork = unitOfWork;
+            _loggedUser = loggedUser;
         }
 
-        public async Task<string> Execute(long Id, DocumentUploadDto documentDto)
+        public async Task<string> Execute(DocumentUploadDto documentDto)
         {
-            var employee = await _repository.GetById(Id);
 
-            if (employee is null)
+            var loggedInUser = await _loggedUser.User();
+            var userId = loggedInUser.Id;
+
+            var user = await _userRepository.GetById(userId);
+
+            if (user == null)
             {
-                throw new NotFoundException(ResourceErrorMessages.EMPLOYEE_NOT_FOUND);
+                throw new NotFoundException("User not found.");
             }
 
             if (documentDto.ImageFile == null || documentDto.ImageFile.Length == 0)
@@ -57,24 +66,15 @@ namespace GscareApiAspNetCore.Application.UseCases.DocumentUseCases
                 await documentDto.ImageFile.CopyToAsync(fileStream);
             }
 
-            //var document = new Document
-            //{
-            //    DocumentName = documentDto.DocumentName,
-            //    DocumentImage = uniqueFileName
-            //};
+            var document = new Document
+            {
+                DocumentName = documentDto.DocumentName,
+                DocumentImage = uniqueFileName,
+                UserId = userId
+            };
 
-           
+            await _repository.SaveDocumentAsync(document);
 
-            // Armazena apenas o nome do arquivo no campo FotoCpf
-            employee.FotoCpf = uniqueFileName;
-
-            _mapper.Map(employee, employee);
-
-            _repository.Update(employee);
-
-            await _unitOfWork.Commit();
-
-            //await _documentRepository.SaveDocumentAsync(document);
             return uniqueFileName;
         }
     }

@@ -32,6 +32,12 @@ public static class DependencyInjectionExtension
     {
 
         //Document
+        services.AddScoped<IDeleteDocumentUseCase, DeleteDocumentUseCase>();
+        services.AddScoped<IGetAllDocumentsUseCase, GetAllDocumentsUseCase>();
+        services.AddScoped<IGetDocumentByIdUseCase, GetDocumentByIdUseCase>();
+        services.AddScoped<IGetDocumentByNameUseCase, GetDocumentByNameUseCase>();
+        services.AddScoped<IGetDocumentsByUserIdUseCase, GetDocumentsByUserIdUseCase>();
+        services.AddScoped<IUpdateDocumentUseCase, UpdateDocumentUseCase>();
         services.AddScoped<IUploadDocumentUseCase, UploadDocumentUseCase>();
         services.AddScoped<IGetDocumentUseCase, GetDocumentUseCase>();
 

@@ -6,9 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GscareApiAspNetCore.Application.UseCases.DocumentUseCases;
-public interface IGetDocumentUseCase
+public interface IGetAllDocumentsUseCase
 {
-    Task<Document?> Execute(string documentName);
-    Task<IEnumerable<Document>> GetDocumentsByUserIdAsync(long userId);
-    Task<IEnumerable<Document>> GetAllDocumentsAsync();
+    Task<IEnumerable<Document>> Execute();
 }

@@ -66,12 +66,6 @@ public class Version0000001 : Migration
             .WithColumn("PatientId").AsInt64().Nullable()
             .WithColumn("CompanyId").AsInt64().Nullable();
 
-        // Document Table
-        Create.Table("Documents")
-            .WithColumn("Id").AsInt32().PrimaryKey().Identity()
-            .WithColumn("DocumentName").AsString(255).Nullable()
-            .WithColumn("DocumentImage").AsString(255).Nullable();
-
         // Medicament Table
         Create.Table("Medicaments")
             .WithColumn("Id").AsInt32().PrimaryKey().Identity()
@@ -143,6 +137,20 @@ public class Version0000001 : Migration
             .WithColumn("Question4").AsBoolean().NotNullable()
             .WithColumn("Question5").AsBoolean().NotNullable()
             .WithColumn("AppointmentId").AsInt64().NotNullable();
+
+        // documents
+        Create.Table("Documents")
+            .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+            .WithColumn("DocumentType").AsString(255).Nullable()
+            .WithColumn("DocumentName").AsString(255).Nullable()
+            .WithColumn("DocumentPath").AsString(255).Nullable()
+            .WithColumn("DocumentImage").AsString(255).Nullable()
+            .WithColumn("UserId").AsInt64().NotNullable();
+
+        Create.ForeignKey("FK_Documents_User")
+            .FromTable("Documents").ForeignColumn("UserId")
+            .ToTable("Users").PrimaryColumn("Id")
+            .OnDelete(Rule.Cascade);
 
         Create.ForeignKey("FK_User_Employee")
             .FromTable("Users").ForeignColumn("EmployeeId")
@@ -219,6 +227,7 @@ public class Version0000001 : Migration
         Delete.ForeignKey("FK_Supplies_PatientId_Patients_Id").OnTable("Supplies");
         Delete.ForeignKey("FK_Medicaments_PatientId_Patients_Id").OnTable("Medicaments");
         Delete.ForeignKey("FK_DailyReports_AppointmentId_Appointments_Id").OnTable("DailyReports");
+        Delete.ForeignKey("FK_Documents_User").OnTable("Documents");
 
         Delete.Table("Warnings");
         Delete.Table("Users");

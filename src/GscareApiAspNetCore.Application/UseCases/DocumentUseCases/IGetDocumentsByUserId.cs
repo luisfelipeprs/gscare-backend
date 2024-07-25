@@ -2,7 +2,7 @@
 using GscareApiAspNetCore.Domain.Entities;
 
 namespace GscareApiAspNetCore.Application.UseCases.DocumentUseCases;
-public interface IUploadDocumentUseCase
+internal interface IGetDocumentsByUserId
 {
-    Task<string> Execute(DocumentUploadDto documentDto);
+    Task<IEnumerable<Document>> Execute();
 }

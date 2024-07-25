@@ -102,6 +102,11 @@ namespace GscareApiAspNetCore.Infrastructure.DataAccess
                 .HasForeignKey(dr => dr.AppointmentId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Document>()
+                .HasOne(d => d.User)
+                .WithMany(u => u.Documents)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }

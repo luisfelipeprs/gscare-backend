@@ -1,10 +1,11 @@
-﻿using GscareApiAspNetCore.Communication.Requests;
+﻿using GscareApiAspNetCore.Api.Attributes;
 using GscareApiAspNetCore.Application.UseCases.DocumentUseCases;
+using GscareApiAspNetCore.Communication.Requests;
+using GscareApiAspNetCore.Domain.Entities;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System.Threading.Tasks;
-using System;
-using GscareApiAspNetCore.Application.UseCases.EmployeeUseCases;
 
 namespace GscareApiAspNetCore.Api.Controllers
 {
@@ -12,63 +13,48 @@ namespace GscareApiAspNetCore.Api.Controllers
     [ApiController]
     public class DocumentController : ControllerBase
     {
-
-        private readonly IWebHostEnvironment _environment;
-        private readonly IUploadDocumentUseCase _uploadDocumentUseCase;
-        private readonly IGetDocumentUseCase _getDocumentUseCase;
-        
-        public DocumentController(IUploadDocumentUseCase uploadDocumentUseCase, IGetDocumentUseCase getDocumentUseCase, IWebHostEnvironment environment)
-        {
-            _environment = environment;
-            _uploadDocumentUseCase = uploadDocumentUseCase;
-            _getDocumentUseCase = getDocumentUseCase;
-        }
-
-        [HttpPost("upload/{id}")]
+        [HttpPost("upload")]
+        [AuthenticatedUser]
         public async Task<IActionResult> Upload(
-        [FromForm] DocumentUploadDto documentDto,
-        [FromRoute] long id)
+            [FromForm] DocumentUploadDto documentDto,
+            [FromServices] IUploadDocumentUseCase uploadDocumentUseCase)
         {
-            var filePath = await _uploadDocumentUseCase.Execute(id, documentDto);
+            var filePath = await uploadDocumentUseCase.Execute(documentDto);
             return Ok(new { FilePath = filePath });
         }
 
-
-        // Endpoint para visualização de arquivos PDF
         [HttpGet("viewPdf/{fileName}")]
-        public IActionResult ViewPdf(string fileName)
+        [AuthenticatedUser]
+        public IActionResult ViewPdf(
+            [FromRoute] string fileName,
+            [FromServices] IWebHostEnvironment environment)
         {
-            // Caminho completo do arquivo PDF
-            var uploadsFolder = Path.Combine(_environment.WebRootPath, "uploads");
+            var uploadsFolder = Path.Combine(environment.WebRootPath, "uploads");
             var filePath = Path.Combine(uploadsFolder, fileName);
 
-            // Verifica se o arquivo existe
             if (!System.IO.File.Exists(filePath))
             {
                 return NotFound("File not found.");
             }
 
-            // Lê os bytes do arquivo PDF e retorna um FileContentResult com tipo de conteúdo application/pdf
             var fileBytes = System.IO.File.ReadAllBytes(filePath);
             return File(fileBytes, "application/pdf");
         }
 
-
-        // Endpoint para visualização de imagens
         [HttpGet("view/{fileName}")]
-        public IActionResult ViewImage(string fileName)
+        [AuthenticatedUser]
+        public IActionResult ViewImage(
+            [FromRoute] string fileName,
+            [FromServices] IWebHostEnvironment environment)
         {
-            // Caminho completo do arquivo de imagem
-            var uploadsFolder = Path.Combine(_environment.WebRootPath, "uploads");
+            var uploadsFolder = Path.Combine(environment.WebRootPath, "uploads");
             var filePath = Path.Combine(uploadsFolder, fileName);
 
-            // Verifica se o arquivo existe
             if (!System.IO.File.Exists(filePath))
             {
                 return NotFound("File not found.");
             }
 
-            // Determina o tipo MIME da imagem com base na extensão do arquivo
             var fileExtension = Path.GetExtension(filePath).ToLowerInvariant();
             var mimeType = fileExtension switch
             {
@@ -76,44 +62,57 @@ namespace GscareApiAspNetCore.Api.Controllers
                 ".jpeg" => "image/jpeg",
                 ".png" => "image/png",
                 ".gif" => "image/gif",
-                _ => "application/octet-stream", // Caso não seja uma imagem, assume um tipo de conteúdo genérico
+                _ => "application/octet-stream",
             };
 
-            // Lê os bytes do arquivo de imagem e retorna um FileContentResult
             var fileBytes = System.IO.File.ReadAllBytes(filePath);
             return File(fileBytes, mimeType);
         }
 
-        //[HttpGet("view/{documentName}")]
-        //public async Task<IActionResult> ViewImage(string documentName)
-        //{
-        //    var document = await _getDocumentUseCase.Execute(documentName);
-        //    if (document == null)
-        //    {
-        //        return NotFound("Document not found.");
-        //    }
+        [HttpGet("byUser")]
+        [AuthenticatedUser]
+        public async Task<IActionResult> GetDocumentsByUser(
+            //[FromRoute] long userId,
+            [FromServices] IGetDocumentsByUserIdUseCase GetDocumentsByUserIdUseCase
+            //[FromServices] IGetDocumentUseCase getDocumentUseCase
+            )
+        {
+            var documents = await GetDocumentsByUserIdUseCase.Execute();
+            return Ok(documents);
+        }
 
-        //    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-        //    var filePath = Path.Combine(uploadsFolder, document.DocumentImage!);
+        [HttpGet("all")]
+        [AuthenticatedUser]
+        public async Task<IActionResult> GetAllDocuments(
+            [FromServices] IGetDocumentUseCase getDocumentUseCase)
+        {
+            var documents = await getDocumentUseCase.GetAllDocumentsAsync();
+            return Ok(documents);
+        }
 
-        //    if (!System.IO.File.Exists(filePath))
-        //    {
-        //        return NotFound("File not found.");
-        //    }
+        [HttpDelete("delete/{documentId}")]
+        [AuthenticatedUser]
+        public async Task<IActionResult> DeleteDocument(
+            [FromRoute] long documentId,
+            [FromServices] IDeleteDocumentUseCase deleteDocumentUseCase)
+        {
+            await deleteDocumentUseCase.Execute(documentId);
+            return NoContent();
+        }
 
-        //    var fileExtension = Path.GetExtension(filePath).ToLowerInvariant();
-        //    var mimeType = fileExtension switch
-        //    {
-        //        ".jpg" => "image/jpeg",
-        //        ".jpeg" => "image/jpeg",
-        //        ".png" => "image/png",
-        //        ".gif" => "image/gif",
-        //        _ => "application/octet-stream",
-        //    };
-
-        //    var fileBytes = System.IO.File.ReadAllBytes(filePath);
-        //    return File(fileBytes, mimeType);
-        //}
-
+        [HttpPut("update/{documentId}")]
+        [AuthenticatedUser]
+        public async Task<IActionResult> UpdateDocument(
+            [FromRoute] long documentId,
+            [FromForm] DocumentUpdateDto documentDto,
+            [FromServices] IUpdateDocumentUseCase updateDocumentUseCase)
+        {
+            var document = await updateDocumentUseCase.Execute(documentId, documentDto);
+            if (document == null)
+            {
+                return NotFound();
+            }
+            return Ok(document);
+        }
     }
 }
