@@ -19,9 +19,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GscareApiAspNetCore.Excepti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GscareApiAspNetCore.Infrastructure", "src\GscareApiAspNetCore.Infrastructure\GscareApiAspNetCore.Infrastructure.csproj", "{02C581EC-3616-45C9-970E-8513D3008EE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validators.Test", "tests\Validators.Test\Validators.Test.csproj", "{700CD65B-15D3-4412-8FD6-2A60269106F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validators.Test", "tests\Validators.Test\Validators.Test.csproj", "{700CD65B-15D3-4412-8FD6-2A60269106F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTestUtils", "tests\CommonTestUtils\CommonTestUtils.csproj", "{883547C5-9529-4733-BF49-97CD879BCEAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonTestUtils", "tests\CommonTestUtils\CommonTestUtils.csproj", "{883547C5-9529-4733-BF49-97CD879BCEAF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "screenshot", "screenshot", "{54E0BBF5-D17B-4935-BD3D-0963900A7F9A}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Downloads\roadmap_gscare.png = ..\..\..\..\Downloads\roadmap_gscare.png
+		..\..\..\..\Downloads\swagger_gscare.png = ..\..\..\..\Downloads\swagger_gscare.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
