@@ -27,6 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "screenshot", "screenshot", 
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\..\Downloads\roadmap_gscare.png = ..\..\..\..\Downloads\roadmap_gscare.png
 		..\..\..\..\Downloads\swagger_gscare.png = ..\..\..\..\Downloads\swagger_gscare.png
+		TextFile1.txt = TextFile1.txt
 	EndProjectSection
 EndProject
 Global
