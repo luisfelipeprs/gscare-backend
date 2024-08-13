@@ -23,13 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validators.Test", "tests\Va
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonTestUtils", "tests\CommonTestUtils\CommonTestUtils.csproj", "{883547C5-9529-4733-BF49-97CD879BCEAF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "screenshot", "screenshot", "{54E0BBF5-D17B-4935-BD3D-0963900A7F9A}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\Downloads\roadmap_gscare.png = ..\..\..\..\Downloads\roadmap_gscare.png
-		..\..\..\..\Downloads\swagger_gscare.png = ..\..\..\..\Downloads\swagger_gscare.png
-		TextFile1.txt = TextFile1.txt
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
