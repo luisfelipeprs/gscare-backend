@@ -82,13 +82,27 @@ No momento, os testes estão sendo desenvolvidos e serão adicionados na fase fi
 
 - **Swagger UI**: Acesse a documentação interativa da API através do Swagger:
 
-  ![Swagger Screenshot](./swagger_gscare.png)
+  <!--![Swagger Screenshot](./swagger_gscare.png)-->
+  <details>
+     <summary style="cursor: pointer; font-weight: bold; color: #007bff; background-color: #f8f9fa; padding: 10px; border-radius: 5px;">
+       📸 Clique aqui para visualizar a imagem do Swagger
+     </summary>
+     <img src="./swagger_gscare.png" alt="Descrição da Imagem" style="max-width:100%;height:auto;">
+   </details>
+
+
 
   O Swagger UI estará disponível em `https://localhost:7053/swagger/index.html`.
 
 - **Roadmap .NET**: Aqui está um exemplo de roadmap que pode ajudar no aprendizado de .NET:
 
-  ![Roadmap .NET](./roadmap_gscare.png)
+  <!--![Roadmap .NET](./roadmap_gscare.png)-->
+  <details>
+     <summary style="cursor: pointer; font-weight: bold; color: #007bff; background-color: #f8f9fa; padding: 10px; border-radius: 5px;">
+       📸 Clique aqui para visualizar a imagem do Roadmap
+     </summary>
+     <img src="./roadmap_gscare.png" alt="Descrição da Imagem" style="max-width:100%;height:auto;">
+   </details>
 
 ### 🛠️ Arquitetura
 
@@ -96,11 +110,25 @@ O GSCare é construído seguindo os princípios de Clean Architecture e Domain-D
 
 - **Clean Architecture**: A separação clara das responsabilidades nas diferentes camadas do projeto permite que as alterações em uma camada não afetem as outras. Isso promove um código mais limpo e fácil de manter.
 
-  ![Clean Architecture](./ddd_gscare.png)
+  <!--![Clean Architecture](./cleanarchitecture_gscare.jpg)-->
+  <details>
+     <summary style="cursor: pointer; font-weight: bold; color: #007bff; background-color: #f8f9fa; padding: 10px; border-radius: 5px;">
+       📸 Clique aqui para visualizar a imagem sobre Clean Architecture
+     </summary>
+     <img src="./cleanarchitecture_gscare.jpg" alt="Descrição da Imagem" style="max-width:100%;height:auto;">
+   </details>
 
   **Resumo:** A Clean Architecture organiza o código em camadas, como a de domínio, aplicação e infraestrutura, promovendo uma alta coesão e baixo acoplamento.
 
 - **DDD (Domain-Driven Design)**: Focamos na modelagem de negócios real através de entidades, agregados e serviços de domínio. Isso garante que a lógica de negócios seja clara, bem definida e diretamente refletida no código.
+
+  <!--![Clean Architecture](./ddd_gscare.png)-->
+  <details>
+     <summary style="cursor: pointer; font-weight: bold; color: #007bff; background-color: #f8f9fa; padding: 10px; border-radius: 5px;">
+       📸 Clique aqui para visualizar a imagem sobre DDD
+     </summary>
+     <img src="./ddd_gscare.png" alt="Descrição da Imagem" style="max-width:100%;height:auto;">
+   </details>
 
 ### 📦 Implantação
 
