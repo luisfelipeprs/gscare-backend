@@ -96,13 +96,11 @@ O GSCare é construído seguindo os princípios de Clean Architecture e Domain-D
 
 - **Clean Architecture**: A separação clara das responsabilidades nas diferentes camadas do projeto permite que as alterações em uma camada não afetem as outras. Isso promove um código mais limpo e fácil de manter.
 
-  ![Clean Architecture](./cleanarchitecture_gscare.jpg)
+  ![Clean Architecture](./ddd_gscare.png)
 
   **Resumo:** A Clean Architecture organiza o código em camadas, como a de domínio, aplicação e infraestrutura, promovendo uma alta coesão e baixo acoplamento.
 
 - **DDD (Domain-Driven Design)**: Focamos na modelagem de negócios real através de entidades, agregados e serviços de domínio. Isso garante que a lógica de negócios seja clara, bem definida e diretamente refletida no código.
-
-![Clean Architecture](./ddd-gscare.jpg)
 
 ### 📦 Implantação
 
