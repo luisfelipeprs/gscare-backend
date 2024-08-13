@@ -1,90 +1,163 @@
-﻿Para recuperar dados com relacionamentos usando o Entity Framework Core, é importante seguir algumas práticas e entender como as entidades estão configuradas no seu contexto de banco de dados (`GsCareDbContext`). Com base nas classes e configurações que você forneceu, aqui estão os passos principais para recuperar dados com relacionamentos:
+# GSCare
 
-### 1. Configuração do Contexto (`GsCareDbContext`)
+```Cuidar do seu cliente é cuidar da sua empresa.```
 
-Certifique-se de que seu contexto (`GsCareDbContext`) está configurado corretamente com todas as entidades e seus respectivos relacionamentos. O código que você forneceu parece estar bem configurado para os relacionamentos que você descreveu (por exemplo, entre `Company` e `Employee`, `Patient`, `Supply`, etc.).
+GSCare é um sistema backend robusto desenvolvido em .NET 8 utilizando C#, Entity Framework, Dapper, Clean Code e Domain-Driven Design (DDD). O sistema é voltado para o acompanhamento e gerenciamento de clientes e funcionários em empresas prestadoras de serviços, como clínicas e profissionais de saúde. Entre suas funcionalidades, destacam-se o gerenciamento de pacientes, funcionários, agendamentos de calendário, e o armazenamento de fotos e arquivos. O GSCare será oferecido como um Software como Serviço (SaaS).
 
-### 2. Consultas com `Include` para Carregar Dados Relacionados
+## 🚀 Começando
 
-Para carregar entidades relacionadas ao recuperar dados, você deve usar o método `Include` do Entity Framework Core. Aqui estão alguns exemplos de como você pode fazer isso:
+Este guia fornecerá instruções para obter uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
 
-#### Exemplo 1: Carregar uma Empresa com Funcionários
+### 📋 Pré-requisitos
 
-```csharp
-public async Task<Company> GetCompanyWithEmployees(long companyId)
-{
-    return await _context.Companies
-        .Include(c => c.Employees)
-        .FirstOrDefaultAsync(c => c.Id == companyId);
-}
-```
+Antes de começar, você precisará ter instalado na sua máquina:
 
-Neste exemplo, `Include(c => c.Employees)` carrega todos os funcionários associados à empresa especificada.
+- **.NET 8 SDK**: [Instalar .NET 8](https://dotnet.microsoft.com/download/dotnet/8.0)
+- **MySQL**: Para banco de dados. [Instalar MySQL](https://dev.mysql.com/downloads/)
+- **Node.js**: Necessário para gerenciar dependências do frontend (se aplicável). [Instalar Node.js](https://nodejs.org/)
 
-#### Exemplo 2: Carregar um Paciente com Documentos
+### 🔧 Instalação
 
-```csharp
-public async Task<Patient> GetPatientWithDocuments(long patientId)
-{
-    return await _context.Patients
-        .Include(p => p.Documents)
-        .FirstOrDefaultAsync(p => p.Id == patientId);
-}
-```
+Siga os passos abaixo para configurar o ambiente de desenvolvimento:
 
-Aqui, `Include(p => p.Documents)` carrega todos os documentos associados ao paciente especificado.
+1. **Clone o repositório:**
 
-#### Exemplo 3: Carregar um Relatório Diário com Paciente e Funcionário
+   ```bash
+   git clone https://github.com/feh-franc0/GSCare.git
+   cd GSCare
+   ```
 
-```csharp
-public async Task<DailyReport> GetDailyReportWithPatientAndEmployee(long dailyReportId)
-{
-    return await _context.DailyReports
-        .Include(dr => dr.Patient)
-        .Include(dr => dr.Employee)
-        .FirstOrDefaultAsync(dr => dr.Id == dailyReportId);
-}
-```
+2. **Restaure as dependências:**
 
-Neste caso, `Include(dr => dr.Patient)` e `Include(dr => dr.Employee)` são usados para carregar o paciente e o funcionário associados ao relatório diário especificado.
+   Navegue até a pasta do projeto e execute o comando:
 
-### 3. Executando Consultas
+   ```bash
+   dotnet restore
+   ```
 
-Você pode chamar esses métodos em seus controladores ou serviços, dependendo da arquitetura da sua aplicação. Aqui está um exemplo de como você pode usá-los em um controlador:
+3. **Configurar o banco de dados:**
 
-```csharp
-[ApiController]
-[Route("api/[controller]")]
-public class CompanyController : ControllerBase
-{
-    private readonly GsCareDbContext _context;
+   Crie um banco de dados MySQL e configure a string de conexão no arquivo `appsettings.json` dentro da pasta `GscareApiAspNetCore.Api`.
 
-    public CompanyController(GsCareDbContext context)
+   ```json
     {
-        _context = context;
-    }
-
-    [HttpGet("{companyId}")]
-    public async Task<ActionResult<Company>> GetCompany(long companyId)
-    {
-        var company = await _context.Companies
-            .Include(c => c.Employees)
-            .FirstOrDefaultAsync(c => c.Id == companyId);
-
-        if (company == null)
-        {
-            return NotFound();
+      "ConnectionStrings": {
+        "Connection": "Server=localhost;Database=gscare_db;User=root;Password=your_password;"
+      },
+      "Settings": {
+        "Jwt": {
+          "SigningKey": "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+          "ExpirationTimeMinutes": 1000
         }
-
-        return company;
+      }
     }
-}
-```
 
-### Considerações Finais
+   ```
 
-Certifique-se de que seu banco de dados está configurado corretamente, com as migrações executadas conforme necessário. Você também pode usar a FluentMigrator para gerenciar suas migrações, como você já implementou.
+4. **Execute as migrações:**
 
-Além disso, ao utilizar o Entity Framework Core com relacionamentos, é importante estar ciente do comportamento de carregamento preguiçoso (`Lazy Loading`) versus carregamento explícito (`Eager Loading`) usando `Include`. O carregamento explícito (`Include`) é geralmente preferido para evitar problemas de N+1, onde várias consultas adicionais podem ser disparadas inadvertidamente.
+   Execute o comando para aplicar as migrações e configurar o banco de dados:
 
-Com essas práticas, você deve conseguir recuperar dados com os relacionamentos especificados em suas entidades de forma eficiente usando o Entity Framework Core.
+   ```bash
+   dotnet run --project src/GscareApiAspNetCore.Api
+   ```
+
+   As migrações serão aplicadas automaticamente utilizando Dapper e FluentMigrator.
+
+5. **Inicie o servidor:**
+
+   Após configurar o banco de dados, inicie o servidor localmente:
+
+   ```bash
+   dotnet run --project src/GscareApiAspNetCore.Api
+   ```
+
+   O sistema estará disponível em `http://localhost:5000`.
+
+### ⚙️ Executando os testes
+
+No momento, os testes estão sendo desenvolvidos e serão adicionados na fase final do projeto. Os testes cobrirão todos os cenários críticos de negócios para garantir a robustez do sistema.
+
+### 🖼️ Swagger e Roadmap
+
+- **Swagger UI**: Acesse a documentação interativa da API através do Swagger:
+
+  ![Swagger Screenshot](./swagger_gscare.png)
+
+  O Swagger UI estará disponível em `https://localhost:7053/swagger/index.html`.
+
+- **Roadmap .NET**: Aqui está um exemplo de roadmap que pode ajudar no aprendizado de .NET:
+
+  ![Roadmap .NET](./roadmap_gscare.png)
+
+### 🛠️ Arquitetura
+
+O GSCare é construído seguindo os princípios de Clean Architecture e Domain-Driven Design (DDD), garantindo uma estrutura sólida, escalável e de fácil manutenção.
+
+- **Clean Architecture**: A separação clara das responsabilidades nas diferentes camadas do projeto permite que as alterações em uma camada não afetem as outras. Isso promove um código mais limpo e fácil de manter.
+
+  ![Clean Architecture](./cleanarchitecture_gscare.jpg)
+
+  **Resumo:** A Clean Architecture organiza o código em camadas, como a de domínio, aplicação e infraestrutura, promovendo uma alta coesão e baixo acoplamento.
+
+- **DDD (Domain-Driven Design)**: Focamos na modelagem de negócios real através de entidades, agregados e serviços de domínio. Isso garante que a lógica de negócios seja clara, bem definida e diretamente refletida no código.
+
+![Clean Architecture](./ddd-gscare.jpg)
+
+### 📦 Implantação
+
+Para implantar o GSCare em um ambiente de produção, siga os passos abaixo:
+
+1. **Configuração de Ambiente:**
+   - Configure a string de conexão do banco de dados no arquivo `appsettings.Production.json`.
+   - Configure variáveis de ambiente para armazenar chaves sensíveis.
+
+2. **Publicação da Aplicação:**
+
+   Utilize o comando `dotnet publish` para gerar os artefatos da aplicação:
+
+   ```bash
+   dotnet publish -c Release -o ./publish
+   ```
+
+3. **Implantação no Servidor:**
+
+   - Copie os arquivos da pasta `./publish` para o servidor.
+   - Configure o servidor web (IIS, Nginx, etc.) para servir a aplicação.
+
+## 🛠️ Construído com
+
+As principais ferramentas e bibliotecas utilizadas no projeto incluem:
+
+- **.NET 8** - Framework principal.
+- **C#** - Linguagem de programação.
+- **Entity Framework Core** - ORM para acesso ao banco de dados.
+- **Dapper** - Micro ORM para execução de queries SQL diretas.
+- **FluentMigrator** - Ferramenta para gerenciar migrações de banco de dados.
+- **MySQL** - Banco de dados relacional utilizado.
+- **Swagger** - Para documentação da API.
+
+## 🖇️ Colaborando
+
+Se você deseja colaborar, por favor, leia o [COLABORACAO.md](https://gist.github.com/feh-franc0) para obter detalhes sobre o nosso código de conduta e o processo para enviar pull requests.
+
+## 📌 Versão
+
+Nós utilizamos [SemVer](http://semver.org/) para controle de versão. Atualmente, o projeto está na versão `1.0.0`. <!-- Para as versões disponíveis, veja as [tags neste repositório](https://github.com/feh-franc0/GSCare/tags).-->
+
+## ✒️ Autores
+
+* **Fernando Franco Valle** - *Desenvolvedor Principal* - [LinkedIn](https://www.linkedin.com/in/fernandofrancovalle/) | [GitHub](https://github.com/feh-franc0)
+
+## 📄 Licença
+
+Este projeto está em processo de validação e não é permitida a venda, comércio ou uso sem autorização expressa. Para mais detalhes, consulte o arquivo [LICENSE.md](LICENSE.md).
+
+## 🎁 Expressões de gratidão
+
+* Conte a outras pessoas sobre este projeto 📢;
+* Agradeça publicamente 🫂;
+
+---
+
+⌨️ Por: [Fernando Franco Valle](https://www.linkedin.com/in/fernandofrancovalle/) 😊
