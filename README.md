@@ -82,13 +82,13 @@ No momento, os testes estão sendo desenvolvidos e serão adicionados na fase fi
 
 - **Swagger UI**: Acesse a documentação interativa da API através do Swagger:
 
-  ![Swagger Screenshot](screenshot/swagger_gscare.png)
+  ![Swagger Screenshot](./swagger_gscare.png)
 
   O Swagger UI estará disponível em `https://localhost:7053/swagger/index.html`.
 
 - **Roadmap .NET**: Aqui está um exemplo de roadmap que pode ajudar no aprendizado de .NET:
 
-  ![Roadmap .NET](screenshot/roadmap_gscare.png)
+  ![Roadmap .NET](./roadmap_gscare.png)
 
 ### 🛠️ Arquitetura
 
@@ -96,7 +96,7 @@ O GSCare é construído seguindo os princípios de Clean Architecture e Domain-D
 
 - **Clean Architecture**: A separação clara das responsabilidades nas diferentes camadas do projeto permite que as alterações em uma camada não afetem as outras. Isso promove um código mais limpo e fácil de manter.
 
-  ![Clean Architecture](screenshot/ddd_gscare.png)
+  ![Clean Architecture](./ddd_gscare.png)
 
   **Resumo:** A Clean Architecture organiza o código em camadas, como a de domínio, aplicação e infraestrutura, promovendo uma alta coesão e baixo acoplamento.
 
