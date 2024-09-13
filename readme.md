@@ -137,7 +137,7 @@ As principais ferramentas e bibliotecas utilizadas no projeto incluem:
 
 ## 🖇️ Colaborando
 
-Se você deseja colaborar, por favor, leia o [COLABORACAO.md](https://gist.github.com/feh-franc0) para obter detalhes sobre o nosso código de conduta e o processo para enviar pull requests.
+Se você deseja colaborar, por favor, leia o [COLABORACAO.md](https://gist.github.com/luisfelipeprs) para obter detalhes sobre o nosso código de conduta e o processo para enviar pull requests.
 
 ## 📌 Versão
 
@@ -146,9 +146,3 @@ Nós utilizamos [SemVer](http://semver.org/) para controle de versão. Atualment
 ## 📄 Licença
 
 Este projeto está em processo de validação e não é permitida a venda, comércio ou uso sem autorização expressa. Para mais detalhes, consulte o arquivo [LICENSE.md](LICENSE.md).
-
-## 🎁 Expressões de gratidão
-
-* Conte a outras pessoas sobre este projeto 📢;
-* Agradeça publicamente 🫂;
-
