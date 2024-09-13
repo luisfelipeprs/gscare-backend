@@ -23,7 +23,7 @@ Siga os passos abaixo para configurar o ambiente de desenvolvimento:
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/feh-franc0/GSCare.git
+   git clone https://github.com/luisfelipeprs/gscare-backend.git
    cd GSCare
    ```
 
@@ -141,11 +141,7 @@ Se você deseja colaborar, por favor, leia o [COLABORACAO.md](https://gist.githu
 
 ## 📌 Versão
 
-Nós utilizamos [SemVer](http://semver.org/) para controle de versão. Atualmente, o projeto está na versão `1.0.0`. <!-- Para as versões disponíveis, veja as [tags neste repositório](https://github.com/feh-franc0/GSCare/tags).-->
-
-## ✒️ Autores
-
-* **Fernando Franco Valle** - *Desenvolvedor Principal* - [LinkedIn](https://www.linkedin.com/in/fernandofrancovalle/) | [GitHub](https://github.com/feh-franc0)
+Nós utilizamos [SemVer](http://semver.org/) para controle de versão. Atualmente, o projeto está na versão `1.0.0`. <!-- Para as versões disponíveis, veja as [tags neste repositório]
 
 ## 📄 Licença
 
@@ -156,6 +152,3 @@ Este projeto está em processo de validação e não é permitida a venda, comé
 * Conte a outras pessoas sobre este projeto 📢;
 * Agradeça publicamente 🫂;
 
----
-
-⌨️ Por: [Fernando Franco Valle](https://www.linkedin.com/in/fernandofrancovalle/) 😊
